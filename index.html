@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>llm-slop — Say nothing, at scale.</title>
 <meta name="description" content="Enterprise-grade content generation. Infinite words. Zero ideas. SOC 2 Type II (self-attested).">
+<meta name="theme-color" content="#08070d">
+<link rel="canonical" href="__BASE_URL__/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308070d'/%3E%3Crect x='11' y='29' width='42' height='6' rx='3' fill='%23c6ff3f'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="llm-slop">
+<meta property="og:url" content="__BASE_URL__/">
+<meta property="og:title" content="llm-slop — Say nothing, at scale.">
+<meta property="og:description" content="Thought leadership, README files, and changelog entries that are functionally indistinguishable from content. Infinite words. Zero ideas.">
+<meta property="og:image" content="__BASE_URL__/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="llm-slop — Say nothing, at scale.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="llm-slop — Say nothing, at scale.">
+<meta name="twitter:description" content="Thought leadership, README files, and changelog entries that are functionally indistinguishable from content. Infinite words. Zero ideas.">
+<meta name="twitter:image" content="__BASE_URL__/og.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -205,6 +223,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
 @media (max-width:720px){
   .navlinks,.ver{display:none}
   .nav .wrap{gap:12px}
+  /* .navlinks carried the margin-left:auto that right-aligned the CTA */
+  .nav .btn{margin-left:auto}
   .row{grid-template-columns:1fr;gap:7px}
   .bar.win{margin-right:0}
   .cookie{left:12px;right:12px;max-width:none;bottom:12px}
@@ -461,7 +481,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
 <button class="chat-btn" id="chatBtn" aria-label="Open support chat" aria-controls="chat" aria-expanded="false">✳</button>
 <div class="chat" id="chat">
   <div class="chat-h">Slop Support <small class="mono">Typically replies instantly, identically</small></div>
-  <div class="log" id="log">
+  <div class="log" id="log" role="log" aria-live="polite">
     <div class="msg bot">Hi! I'm Slopbot. How can I help you today?</div>
   </div>
   <div class="chat-in">
@@ -516,12 +536,16 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
   }
 
   var out = document.getElementById('out'), wc = document.getElementById('wc');
+  function words(str){
+    var t = str.trim(), n = t ? t.split(/\s+/).length : 0;
+    return n + (n === 1 ? ' word' : ' words');
+  }
   var total = 0;
 
   if (reduce) {
     var p = post();
     out.textContent = p;
-    wc.textContent = p.split(/\s+/).length + ' words';
+    wc.textContent = words(p);
   } else {
     var txt='', i=0, cur=post();
     var caret = document.createElement('span');
@@ -532,7 +556,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
         out.textContent = txt.replace(/[<>]/g,'');
         out.appendChild(caret);
         total++;
-        if(total%5===0) wc.textContent = out.textContent.trim().split(/\s+/).length + ' words';
+        if(total%5===0) wc.textContent = words(out.textContent);
         setTimeout(tick, cur[i-1]==='\n' ? 90 : 18 + Math.random()*30);
       } else {
         setTimeout(function(){ txt=''; i=0; cur=post(); tick(); }, 2600);
