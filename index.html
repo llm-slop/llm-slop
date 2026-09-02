@@ -458,7 +458,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
   This entire site was written by a human, which we consider a failure of process.</p>
 </div></footer>
 
-<button class="chat-btn" id="chatBtn" aria-label="Open support chat">✳</button>
+<button class="chat-btn" id="chatBtn" aria-label="Open support chat" aria-controls="chat" aria-expanded="false">✳</button>
 <div class="chat" id="chat">
   <div class="chat-h">Slop Support <small class="mono">Typically replies instantly, identically</small></div>
   <div class="log" id="log">
@@ -480,13 +480,17 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
 
 <script>
 (function(){
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   /* logo wall */
   var names = ['SYNERGON','Vertexly','CORPUS MAXIMUM','Blandly','hoot.','NORTHWIND AI',
                'Palisade&Co','deployr','Ghostwrite','OMNIVEC','thoughtpipe','LUMENSTACK'];
   var t = document.getElementById('track');
-  t.innerHTML = names.concat(names).map(function(n){return '<span>'+n+'</span>'}).join('');
+  names.concat(names).forEach(function(n){
+    var span = document.createElement('span');
+    span.textContent = n;
+    t.appendChild(span);
+  });
 
   /* slop generator */
   var open = ["Let's be honest.","Unpopular opinion:","Nobody talks about this.",
@@ -520,10 +524,13 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
     wc.textContent = p.split(/\s+/).length + ' words';
   } else {
     var txt='', i=0, cur=post();
+    var caret = document.createElement('span');
+    caret.className = 'caret';
     (function tick(){
       if(i < cur.length){
         txt += cur[i++];
-        out.innerHTML = txt.replace(/[<>]/g,'') + '<span class="caret"></span>';
+        out.textContent = txt.replace(/[<>]/g,'');
+        out.appendChild(caret);
         total++;
         if(total%5===0) wc.textContent = out.textContent.trim().split(/\s+/).length + ' words';
         setTimeout(tick, cur[i-1]==='\n' ? 90 : 18 + Math.random()*30);
@@ -536,13 +543,18 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
   /* counter */
   var c = document.getElementById('count'), n = 1284993201;
   if(!reduce) setInterval(function(){
+    if(document.hidden) return;
     n += Math.floor(Math.random()*900)+200;
     c.textContent = n.toLocaleString('en-US');
   }, 130);
 
   /* chat */
   var chat = document.getElementById('chat'), log = document.getElementById('log');
-  document.getElementById('chatBtn').onclick = function(){ chat.classList.toggle('on'); };
+  var chatBtn = document.getElementById('chatBtn');
+  chatBtn.onclick = function(){
+    var isOpen = chat.classList.toggle('on');
+    chatBtn.setAttribute('aria-expanded', String(isOpen));
+  };
   function send(){
     var el = document.getElementById('chatIn'), v = el.value.trim();
     if(!v) return;
