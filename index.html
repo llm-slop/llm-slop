@@ -335,7 +335,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
   <div class="term">
     <div class="term-bar mono">bash</div>
 <pre><span class="g">$</span> curl -X POST https://api.llm-slop.com/v1/generate \
-    -H <span class="p">"Authorization: ******"</span> \
+    -H <span class="p">"Authorization: Bearer $SLOP_KEY"</span> \
     -d <span class="p">'{"topic": "anything", "words": 40000, "insight": false}'</span>
 
 <span class="c">{</span>
