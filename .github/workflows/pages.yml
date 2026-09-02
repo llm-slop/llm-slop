@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a run finish deploying rather than cancelling it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          # Turns Pages on for the repo (source: GitHub Actions) if it isn't already.
+          enablement: true
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
+
+      - name: Set absolute URLs
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          # Canonical, og:url and og:image must be absolute. Deriving them from the
+          # live Pages base URL means attaching a custom domain updates them too.
+          grep -rl '__BASE_URL__' _site | xargs -r sed -i "s|__BASE_URL__|${BASE_URL%/}|g"
+          if grep -rq '__BASE_URL__' _site; then
+            echo "::error::__BASE_URL__ placeholder survived substitution"
+            exit 1
+          fi
+          echo "Base URL: ${BASE_URL%/}"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
