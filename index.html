@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>llm-slop — Say nothing, at scale.</title>
+<meta name="description" content="Enterprise-grade content generation. Infinite words. Zero ideas. SOC 2 Type II (self-attested).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#08070d;
+  --panel:#100f19;
+  --panel2:#16151f;
+  --line:#242232;
+  --text:#eae8f2;
+  --dim:#8a85a0;
+  --dimmer:#5d5972;
+  --slop:#c6ff3f;
+  --slop-dim:#7f9e2c;
+  --hype:#8b6cf6;
+  --radius:14px;
+  --maxw:1080px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--void);color:var(--text);
+  font-family:"Space Grotesk",system-ui,sans-serif;
+  font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;opacity:.28;
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 20%,transparent 75%);
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+a{color:inherit}
+h1,h2,h3{margin:0;line-height:1.08;letter-spacing:-.025em;font-weight:700}
+h2{font-size:clamp(30px,4.4vw,44px)}
+p{margin:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+:focus-visible{outline:2px solid var(--slop);outline-offset:3px;border-radius:4px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(8,7,13,.82);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:62px}
+.brand{font-weight:700;font-size:19px;letter-spacing:-.04em;text-decoration:none;white-space:nowrap}
+.brand span{color:var(--slop)}
+.ver{font-size:10.5px;color:var(--dimmer);border:1px solid var(--line);
+  padding:3px 8px;border-radius:99px;white-space:nowrap}
+.navlinks{display:flex;gap:22px;margin-left:auto;font-size:14.5px;color:var(--dim)}
+.navlinks a{text-decoration:none}
+.navlinks a:hover{color:var(--text)}
+.btn{display:inline-block;border-radius:9px;padding:9px 17px;font-size:14.5px;
+  font-weight:500;text-decoration:none;border:1px solid var(--line);
+  background:var(--panel2);color:var(--text);cursor:pointer;font-family:inherit}
+.btn-go{background:var(--slop);color:#0b1300;border-color:var(--slop);font-weight:700}
+.btn-lg{padding:14px 26px;font-size:16px}
+
+/* hero */
+.hero{padding:96px 0 20px;text-align:center}
+.pill{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;color:var(--dim);
+  border:1px solid var(--line);background:var(--panel);padding:6px 14px;border-radius:99px;margin-bottom:34px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--slop);box-shadow:0 0 10px var(--slop)}
+h1{font-size:clamp(44px,8.2vw,86px);letter-spacing:-.045em}
+.sub{max-width:600px;margin:26px auto 0;color:var(--dim);font-size:18.5px}
+.ctas{display:flex;gap:12px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.fineprint{margin-top:16px;font-size:12.5px;color:var(--dimmer)}
+
+/* generator */
+.gen{margin:60px auto 0;max-width:660px;text-align:left;
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden;
+  box-shadow:0 0 80px rgba(139,108,246,.09)}
+.gen-bar{display:flex;align-items:center;gap:10px;padding:11px 16px;
+  border-bottom:1px solid var(--line);font-size:11.5px;color:var(--dimmer)}
+.gen-bar .dot{background:var(--hype);box-shadow:none}
+.gen-body{padding:24px 26px 30px;min-height:224px}
+.gen-who{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.av{width:38px;height:38px;border-radius:50%;background:linear-gradient(140deg,var(--hype),var(--slop))}
+.gen-name{font-size:14.5px;font-weight:500}
+.gen-role{font-size:12px;color:var(--dimmer)}
+.gen-text{font-size:15.5px;line-height:1.68;color:#d3d0e0;white-space:pre-wrap;min-height:120px}
+.caret{display:inline-block;width:8px;height:17px;background:var(--slop);
+  vertical-align:-3px;margin-left:2px;animation:blink 1.05s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.gen-foot{display:flex;justify-content:space-between;font-size:11.5px;
+  color:var(--dimmer);border-top:1px solid var(--line);padding:11px 16px}
+
+/* sections */
+section{padding:96px 0;position:relative;z-index:1}
+.eyebrow{font-size:13px;color:var(--slop-dim);margin-bottom:14px}
+.lede{color:var(--dim);margin-top:16px;max-width:560px;font-size:17px}
+
+/* logos */
+.logos{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:38px 0;overflow:hidden}
+.logos-h{text-align:center;font-size:13px;color:var(--dimmer);margin-bottom:26px}
+.track{display:flex;gap:56px;width:max-content;animation:slide 34s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+.track span{font-size:20px;font-weight:700;color:#332f45;letter-spacing:-.03em;white-space:nowrap}
+
+/* bench */
+.bench{border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel);padding:32px 30px;margin-top:40px}
+.row{display:grid;grid-template-columns:190px 1fr;gap:18px;align-items:center;margin-bottom:20px}
+.row-l{font-size:14px;color:var(--dim)}
+.bar{height:30px;border-radius:5px;background:#282539;position:relative;
+  display:flex;align-items:center;justify-content:flex-end;padding-right:10px;
+  font-size:12px;color:var(--dim)}
+.bar.win{background:linear-gradient(90deg,var(--slop-dim),var(--slop));color:#0b1300;font-weight:700;
+  border-radius:5px 0 0 5px;margin-right:-30px}
+.note{font-size:12px;color:var(--dimmer);margin-top:8px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px;margin-top:44px}
+.card{border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel);padding:26px 24px}
+.card h3{font-size:18.5px;margin-bottom:11px}
+.card p{color:var(--dim);font-size:15px;line-height:1.6}
+
+/* steps */
+.steps{margin-top:44px;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:56px 1fr;gap:22px;
+  padding:28px 4px;border-bottom:1px solid var(--line)}
+.num{font-size:14px;color:var(--slop-dim);padding-top:4px}
+.step h3{font-size:21px;margin-bottom:9px}
+.step p{color:var(--dim);font-size:15.5px}
+
+/* pricing */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:44px}
+.tier{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
+  padding:26px 22px;display:flex;flex-direction:column}
+.tier.hot{border-color:var(--slop-dim)}
+.tier h3{font-size:16px;font-weight:500;color:var(--dim);margin-bottom:14px}
+.price{font-size:29px;font-weight:700;letter-spacing:-.03em;margin-bottom:18px}
+.tier ul{list-style:none;padding:0;margin:0 0 26px;font-size:14px;color:var(--dim);flex:1}
+.tier li{padding:7px 0;border-bottom:1px solid #1c1a27}
+.tier .btn{text-align:center}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:44px}
+.quote{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:26px 24px}
+.quote p{font-size:15.5px;line-height:1.65;margin-bottom:18px}
+.who{font-size:13px;color:var(--dimmer)}
+
+/* code */
+.term{border:1px solid var(--line);border-radius:var(--radius);background:#0c0b13;
+  margin-top:40px;overflow:hidden}
+.term-bar{padding:11px 16px;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--dimmer)}
+pre{margin:0;padding:24px 22px;overflow-x:auto;font-family:"IBM Plex Mono",monospace;
+  font-size:13.5px;line-height:1.75;color:#c9c5da}
+.g{color:var(--slop)}
+.p{color:var(--hype)}
+.c{color:var(--dimmer)}
+
+/* counter */
+.counter{text-align:center;padding:76px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.big{font-size:clamp(38px,8vw,74px);font-weight:700;letter-spacing:-.045em;color:var(--slop);
+  font-variant-numeric:tabular-nums}
+.counter p{color:var(--dimmer);font-size:14px;margin-top:12px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;color:var(--dimmer)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:34px;margin-bottom:52px}
+.fgrid h4{margin:0 0 14px;font-size:13px;color:var(--text);font-weight:500}
+.fgrid a{display:block;padding:4px 0;text-decoration:none}
+.fgrid a:hover{color:var(--text)}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.badge{border:1px solid var(--line);border-radius:6px;padding:6px 11px;font-size:11px}
+
+/* chat */
+.chat-btn{position:fixed;right:20px;bottom:20px;z-index:60;width:54px;height:54px;
+  border-radius:50%;border:none;background:var(--slop);color:#0b1300;font-size:22px;
+  cursor:pointer;box-shadow:0 6px 30px rgba(198,255,63,.28)}
+.chat{position:fixed;right:20px;bottom:86px;z-index:60;width:296px;display:none;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.chat.on{display:block}
+.chat-h{padding:12px 15px;border-bottom:1px solid var(--line);font-size:13px}
+.chat-h small{display:block;color:var(--dimmer);font-size:11px}
+.log{padding:14px;height:184px;overflow-y:auto;font-size:13.5px;display:flex;
+  flex-direction:column;gap:9px}
+.msg{padding:8px 11px;border-radius:9px;max-width:86%}
+.bot{background:var(--panel2);color:var(--dim);align-self:flex-start}
+.me{background:var(--slop);color:#0b1300;align-self:flex-end}
+.chat-in{display:flex;border-top:1px solid var(--line)}
+.chat-in input{flex:1;background:none;border:none;padding:12px 14px;
+  color:var(--text);font-family:inherit;font-size:13.5px}
+.chat-in input:focus{outline:none}
+.chat-in button{background:none;border:none;color:var(--slop);padding:0 15px;
+  cursor:pointer;font-family:inherit;font-size:13.5px}
+
+/* cookies */
+.cookie{position:fixed;left:20px;bottom:20px;z-index:60;max-width:394px;
+  border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:18px 20px}
+.cookie p{font-size:13px;color:var(--dim);margin-bottom:14px;line-height:1.55}
+.cookie div{display:flex;gap:9px}
+.cookie .btn{font-size:13px;padding:7px 14px}
+
+@media (max-width:720px){
+  .navlinks,.ver{display:none}
+  .nav .wrap{gap:12px}
+  .row{grid-template-columns:1fr;gap:7px}
+  .bar.win{margin-right:0}
+  .cookie{left:12px;right:12px;max-width:none;bottom:12px}
+  .chat{right:12px;left:12px;width:auto}
+  section{padding:70px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="#">llm<span>-</span>slop</a>
+  <span class="ver mono">v4.1-turbo-preview-final-v2</span>
+  <div class="navlinks">
+    <a href="#features">Product</a>
+    <a href="#bench">Benchmarks</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#api">Docs</a>
+  </div>
+  <a class="btn" href="#pricing">Book a demo</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="pill"><span class="dot"></span><span class="mono">Series B closed. We are not saying how much.</span></div>
+  <h1>Say nothing,<br>at scale.</h1>
+  <p class="sub">llm-slop generates thought leadership, README files, and changelog entries that are functionally indistinguishable from content, in whatever volume your calendar demands.</p>
+  <div class="ctas">
+    <a class="btn btn-go btn-lg" href="#pricing">Start generating</a>
+    <a class="btn btn-lg" href="#pricing">Talk to sales</a>
+  </div>
+  <p class="fineprint mono">No credit card required. No idea required.</p>
+
+  <div class="gen">
+    <div class="gen-bar mono"><span class="dot"></span> live output · thought-leadership endpoint</div>
+    <div class="gen-body">
+      <div class="gen-who">
+        <div class="av"></div>
+        <div>
+          <div class="gen-name">Your Name Here</div>
+          <div class="gen-role mono">Founder & CEO · 3rd+</div>
+        </div>
+      </div>
+      <div class="gen-text" id="out"><span class="caret"></span></div>
+    </div>
+    <div class="gen-foot mono"><span id="wc">0 words</span><span>0 ideas</span></div>
+  </div>
+</div></header>
+
+<div class="logos">
+  <p class="logos-h mono">Trusted by teams who stopped reading</p>
+  <div class="track" id="track"></div>
+</div>
+
+<section id="bench"><div class="wrap">
+  <p class="eyebrow mono">Independently benchmarked*</p>
+  <h2>We produce more words<br>than anyone measured.</h2>
+  <p class="lede">Words emitted per original idea. Higher is better, according to the methodology we also wrote.</p>
+
+  <div class="bench">
+    <div class="row"><div class="row-l">A person, thinking</div><div class="bar" style="width:2%">14</div></div>
+    <div class="row"><div class="row-l">Junior copywriter</div><div class="bar" style="width:6%">340</div></div>
+    <div class="row"><div class="row-l">Generic frontier model</div><div class="bar" style="width:22%">1,900</div></div>
+    <div class="row"><div class="row-l">Competing slop vendor</div><div class="bar" style="width:38%">3,100</div></div>
+    <div class="row"><div class="row-l">llm-slop 4.1</div><div class="bar win" style="width:100%">41,000</div></div>
+    <p class="note mono">*by us. Chart truncated because the bar left the building.</p>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <p class="eyebrow mono">Platform</p>
+  <h2>Every tell, on by default.</h2>
+  <p class="lede">Years of research into what makes writing read as machine-written, packaged as toggles you will never turn off.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Dashformer™</h3>
+      <p>Every sentence gets an em dash. Some get three. Your prose acquires the unmistakable cadence of something nobody wrote.</p>
+    </div>
+    <div class="card">
+      <h3>Delve Mode</h3>
+      <p>Replaces "look at" with "delve into" across your entire corpus. Also handles "leverage", "robust", and "in today's landscape". Team plan and above.</p>
+    </div>
+    <div class="card">
+      <h3>Not X, But Y</h3>
+      <p>The industry-standard sentence structure. This isn't a feature, it's a philosophy. That sentence cost us $14M to develop.</p>
+    </div>
+    <div class="card">
+      <h3>Emoji bullet compliance</h3>
+      <p>🚀 Every list item receives an emoji. ✅ Every one. 💡 There is no allowlist. 🔑 There is no off switch.</p>
+    </div>
+    <div class="card">
+      <h3>Confidence guarantee</h3>
+      <p>Zero hedging. Every fabricated statistic is delivered in the register of a closing keynote. Sources available on request, then unavailable.</p>
+    </div>
+    <div class="card">
+      <h3>Human in the loop</h3>
+      <p>There is no human. The loop is just the model, reading its own output. But "human in the loop" tested extremely well with buyers.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow mono">How it works</p>
+  <h2>Three steps. One of them is real.</h2>
+  <div class="steps">
+    <div class="step"><div class="num mono">01</div><div>
+      <h3>Connect your brand voice</h3>
+      <p>Upload three documents that represent your tone. We store them. We do not read them. The onboarding checklist turns green, which is the actual product.</p>
+    </div></div>
+    <div class="step"><div class="num mono">02</div><div>
+      <h3>Set your volume</h3>
+      <p>Choose words per day. There is no ceiling. There is technically a floor, but every customer who set one churned within a quarter.</p>
+    </div></div>
+    <div class="step"><div class="num mono">03</div><div>
+      <h3>Publish everywhere</h3>
+      <p>Straight to your blog, your LinkedIn, and the changelog nobody opens. Our next model trains on it. So does everyone else's. The loop closes. This is the business.</p>
+    </div></div>
+  </div>
+</div></section>
+
+<section id="api"><div class="wrap">
+  <p class="eyebrow mono">Developers</p>
+  <h2>One endpoint. No parameters that matter.</h2>
+  <div class="term">
+    <div class="term-bar mono">bash</div>
+<pre><span class="g">$</span> curl -X POST https://api.llm-slop.com/v1/generate \
+    -H <span class="p">"Authorization: ******"</span> \
+    -d <span class="p">'{"topic": "anything", "words": 40000, "insight": false}'</span>
+
+<span class="c">{</span>
+  <span class="c">"content"</span>: <span class="p">"In today's rapidly evolving landscape, one thing..."</span>,
+  <span class="c">"tokens_billed"</span>: 51204,
+  <span class="c">"em_dashes"</span>: 1841,
+  <span class="c">"original_thoughts"</span>: 0,
+  <span class="c">"warning"</span>: <span class="p">"insight=true is not supported and will not be"</span>
+<span class="c">}</span></pre>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow mono">Customers</p>
+  <h2>They had nothing to say.<br>Now they say it constantly.</h2>
+  <div class="quotes">
+    <div class="quote">
+      <p>"As Head of Content, I can confidently say llm-slop has completely transformed our approach to — I'm sorry, I don't have enough context to complete this testimonial."</p>
+      <p class="who mono">Priya N. · Head of Content, Synergon</p>
+    </div>
+    <div class="quote">
+      <p>"We went from four posts a month to nine hundred. Organic traffic is down 61%. But nine hundred."</p>
+      <p class="who mono">Marcus D. · VP Growth, Vertexly</p>
+    </div>
+    <div class="quote">
+      <p>"It's not a writing tool, it's a paradigm shift. (This testimonial was generated by llm-slop. So was Dana.)"</p>
+      <p class="who mono">Dana K. · CMO, Corpus Maximus</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <p class="eyebrow mono">Pricing</p>
+  <h2>Simple, transparent pricing.</h2>
+  <p class="lede">Straightforward tiers with no hidden costs, which is why every one of them requires a forty minute call.</p>
+
+  <div class="tiers">
+    <div class="tier">
+      <h3>Free</h3>
+      <div class="price">$0</div>
+      <ul>
+        <li>10,000 words / month</li>
+        <li>Your inputs train the model</li>
+        <li>Your outputs train the model</li>
+        <li>This page trains the model</li>
+      </ul>
+      <a class="btn" href="#">Contact sales</a>
+    </div>
+    <div class="tier hot">
+      <h3>Pro</h3>
+      <div class="price">Contact sales</div>
+      <ul>
+        <li>Unlimited words</li>
+        <li>Delve Mode</li>
+        <li>Priority hallucinations</li>
+        <li>Slack channel, unanswered</li>
+      </ul>
+      <a class="btn btn-go" href="#">Contact sales</a>
+    </div>
+    <div class="tier">
+      <h3>Team</h3>
+      <div class="price">Contact sales</div>
+      <ul>
+        <li>Everything in Pro</li>
+        <li>SSO, eventually</li>
+        <li>Brand voice ingestion</li>
+        <li>Brand voice ignoring</li>
+      </ul>
+      <a class="btn" href="#">Contact sales</a>
+    </div>
+    <div class="tier">
+      <h3>Enterprise</h3>
+      <div class="price">Contact sales</div>
+      <ul>
+        <li>Everything in Team</li>
+        <li>On-prem, air-gapped, still slop</li>
+        <li>Dedicated CSM named Kyle</li>
+        <li>Kyle is also generated</li>
+      </ul>
+      <a class="btn" href="#">Contact sales</a>
+    </div>
+  </div>
+</div></section>
+
+<div class="counter"><div class="wrap">
+  <div class="big" id="count">1,284,993,201</div>
+  <p class="mono">words generated today, none of them read</p>
+</div></div>
+
+<footer><div class="wrap">
+  <div class="badges mono">
+    <span class="badge">SOC 2 Type II (self-attested)</span>
+    <span class="badge">GDPR-adjacent</span>
+    <span class="badge">ISO 9001 (aspirational)</span>
+    <span class="badge">99.99% uptime, 0.01% accuracy</span>
+  </div>
+  <div class="fgrid">
+    <div>
+      <h4>Product</h4>
+      <a href="#">Generate</a><a href="#">Regenerate</a><a href="#">Regenerate again</a><a href="#">Integrations</a>
+    </div>
+    <div>
+      <h4>Solutions</h4>
+      <a href="#">Slop for Healthcare</a><a href="#">Slop for Fintech</a><a href="#">Slop for Government</a><a href="#">Slop for Slop</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="#">About</a><a href="#">Careers (12 open, 0 real)</a><a href="#">Manifesto</a><a href="#">Manifesto v2</a>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <a href="#">Blog (41,000 posts)</a><a href="#">Whitepaper</a><a href="#">The State of Slop 2026</a><a href="#">Status</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="#">Terms</a><a href="#">Privacy</a><a href="#">Acceptable Use</a><a href="#">Unacceptable Use</a>
+    </div>
+  </div>
+  <p class="mono">© 2026 llm-slop, inc. Some rights reserved. Most generated.<br>
+  This entire site was written by a human, which we consider a failure of process.</p>
+</div></footer>
+
+<button class="chat-btn" id="chatBtn" aria-label="Open support chat">✳</button>
+<div class="chat" id="chat">
+  <div class="chat-h">Slop Support <small class="mono">Typically replies instantly, identically</small></div>
+  <div class="log" id="log">
+    <div class="msg bot">Hi! I'm Slopbot. How can I help you today?</div>
+  </div>
+  <div class="chat-in">
+    <input id="chatIn" placeholder="Ask anything" aria-label="Message">
+    <button id="chatSend">Send</button>
+  </div>
+</div>
+
+<div class="cookie" id="cookie">
+  <p>We use cookies to improve your experience. We also use your writing, your competitors' writing, and roughly four terabytes of Reddit.</p>
+  <div>
+    <button class="btn btn-go" data-close>Accept all</button>
+    <button class="btn" data-close>Reject all</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* logo wall */
+  var names = ['SYNERGON','Vertexly','CORPUS MAXIMUM','Blandly','hoot.','NORTHWIND AI',
+               'Palisade&Co','deployr','Ghostwrite','OMNIVEC','thoughtpipe','LUMENSTACK'];
+  var t = document.getElementById('track');
+  t.innerHTML = names.concat(names).map(function(n){return '<span>'+n+'</span>'}).join('');
+
+  /* slop generator */
+  var open = ["Let's be honest.","Unpopular opinion:","Nobody talks about this.",
+    "I'll say the quiet part out loud.","Hot take, but hear me out.","This might ruffle feathers."];
+  var mid = [
+    "{X} isn't just {a} — it's a mindset.",
+    "Most teams treat {X} as a cost centre. The best treat it as a religion.",
+    "In today's rapidly evolving landscape, {X} is no longer optional — it's table stakes.",
+    "I've spent 14 years in {X}. Here's what nobody tells you.",
+    "We didn't need more {X}. We needed the courage to delve into {X}.",
+    "The companies winning at {X} in 2026 all have one thing in common — and it isn't {a}."
+  ];
+  var close = ["Here's the thing.","Let that sink in.","Thoughts?","🧵 1/12",
+    "Agree? Disagree? Comment 'SLOP' and I'll DM you the deck.","What am I missing?"];
+  var X = ["AI","content","hiring","leadership","onboarding","distribution","culture","GTM","design"];
+  var A = ["a tool","a strategy","a channel","a headcount problem","a roadmap item"];
+
+  function pick(a){return a[Math.floor(Math.random()*a.length)]}
+  function post(){
+    return pick(open)+"\n\n"+pick(mid).replace('{X}',pick(X)).replace('{X}',pick(X)).replace('{a}',pick(A))
+      +"\n\n"+pick(mid).replace('{X}',pick(X)).replace('{X}',pick(X)).replace('{a}',pick(A))
+      +"\n\n"+pick(close);
+  }
+
+  var out = document.getElementById('out'), wc = document.getElementById('wc');
+  var total = 0;
+
+  if (reduce) {
+    var p = post();
+    out.textContent = p;
+    wc.textContent = p.split(/\s+/).length + ' words';
+  } else {
+    var txt='', i=0, cur=post();
+    (function tick(){
+      if(i < cur.length){
+        txt += cur[i++];
+        out.innerHTML = txt.replace(/[<>]/g,'') + '<span class="caret"></span>';
+        total++;
+        if(total%5===0) wc.textContent = out.textContent.trim().split(/\s+/).length + ' words';
+        setTimeout(tick, cur[i-1]==='\n' ? 90 : 18 + Math.random()*30);
+      } else {
+        setTimeout(function(){ txt=''; i=0; cur=post(); tick(); }, 2600);
+      }
+    })();
+  }
+
+  /* counter */
+  var c = document.getElementById('count'), n = 1284993201;
+  if(!reduce) setInterval(function(){
+    n += Math.floor(Math.random()*900)+200;
+    c.textContent = n.toLocaleString('en-US');
+  }, 130);
+
+  /* chat */
+  var chat = document.getElementById('chat'), log = document.getElementById('log');
+  document.getElementById('chatBtn').onclick = function(){ chat.classList.toggle('on'); };
+  function send(){
+    var el = document.getElementById('chatIn'), v = el.value.trim();
+    if(!v) return;
+    el.value='';
+    add('me', v);
+    setTimeout(function(){ add('bot', "You're absolutely right!"); }, 550);
+  }
+  function add(cls, text){
+    var d = document.createElement('div');
+    d.className = 'msg ' + cls; d.textContent = text;
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+  }
+  document.getElementById('chatSend').onclick = send;
+  document.getElementById('chatIn').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') send();
+  });
+
+  /* cookies: both buttons do the same thing */
+  var ck = document.getElementById('cookie');
+  ck.querySelectorAll('[data-close]').forEach(function(b){
+    b.onclick = function(){ ck.style.display='none'; };
+  });
+})();
+</script>
+</body>
+</html>
