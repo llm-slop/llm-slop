@@ -12,7 +12,7 @@ word. Static, single page, no build step, no dependencies.
 | `index.html` | The whole site — markup, inline CSS, inline JS. |
 | `404.html` | Custom not-found page. |
 | `og.png` | 1200×630 social preview image. |
-| `.github/workflows/pages.yml` | Builds and deploys to GitHub Pages on every push to `main`. |
+| `.nojekyll` | Tells GitHub Pages to serve the files as-is instead of running Jekyll. |
 
 ## Running it locally
 
@@ -22,16 +22,19 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000/. That's it — there is nothing to install.
 
-The `__BASE_URL__` placeholder in `index.html` is only used by `<link rel="canonical">`
-and the Open Graph tags, so it stays unsubstituted locally without affecting the page.
-The deploy workflow replaces it with the live Pages URL.
-
 ## Deploying
 
-Merging to `main` deploys. The workflow enables Pages on first run, so no manual
-setup is required; if the repository is private, Pages needs a plan that allows it.
+Pages serves `main` directly; there is no build step and no workflow. Enable it once:
 
-Watch the run under the **Actions** tab. First deploy takes a couple of minutes.
+**Settings → Pages → Build and deployment → Deploy from a branch**, branch `main`,
+folder `/ (root)`.
+
+After that every push to `main` republishes within a minute or so. Deploy status
+shows up under **Settings → Pages** and in the repository's **Deployments**.
+
+An earlier version did this with an Actions workflow, which needed `pages: write`
+to create the site on first run. That permission isn't granted to `GITHUB_TOKEN`
+here, so the built-in branch deploy is the simpler path.
 
 ## Attaching llm-slop.com
 
@@ -43,10 +46,15 @@ Watch the run under the **Actions** tab. First deploy takes a couple of minutes.
    before relying on them.
 2. In **Settings → Pages → Custom domain**, enter `llm-slop.com` and save.
 3. Wait for the DNS check to pass, then tick **Enforce HTTPS**.
+4. Update the four absolute URLs in `index.html` — `canonical`, `og:url`, `og:image`
+   and `twitter:image` — which are hardcoded to the `github.io` address:
 
-No code change is needed. The canonical and Open Graph URLs are derived from the
-live Pages URL at deploy time, so they follow the domain automatically on the next
-deploy — push any commit to `main` afterwards to refresh them.
+   ```bash
+   sed -i 's|https://llm-slop.github.io/llm-slop|https://llm-slop.com|g' index.html
+   ```
+
+   The site works without step 4 (GitHub redirects the old address), but social
+   cards and the canonical tag should point at the real domain.
 
 ## Editing the page
 
