@@ -44,6 +44,9 @@ surface gets linked from every other page by adding it there.
   `data-desc="1"`, which marks a release whose notes say something.
 - `feed/index.html` — the blog. Page one is static markup; the JS regenerates the list
   procedurally on Next, so the page still shows ten posts without it.
+- `trust/index.html` — the trust centre: certifications, subprocessors, controls,
+  vendor assessment, disclosure. Entirely static; the only script it loads is the
+  shared nav.
 
 Every page works with JavaScript disabled — scripts only add filtering, paging and the
 status strips. Keep it that way; a job board that renders nothing without JS is worse
@@ -56,7 +59,7 @@ jokes that go nowhere on purpose, and a reader cannot tell which of them are pag
 That is fine for a footer and useless as a way in.
 
 So the nav carries the real pages, and the nav is the thing to update when you add
-one. It has two parts, both repeated in the markup of all six pages:
+one. It has two parts, both repeated in the markup of all seven pages:
 
 - Four inline links — Product, Pricing, Careers, Status — which hide below 720px.
 - A **Menu** button, visible at every width, opening a panel that lists every page
@@ -92,9 +95,13 @@ how-it-works, API, testimonials, pricing, counter, footer.
 The careers landing page runs: nav, hero, stat strip, principles, benefits, job
 board, hiring process, employee quotes, offices, footer.
 
+The trust centre runs: nav, hero, stat strip, certifications, subprocessors, controls,
+vendor assessment, disclosure, footer.
+
 The sub-pages cross-reference each other's details on purpose — Kyle is a job listing,
-a status component and an incident; the deduplication service is a responsibility on
-one job, an incident, and two changelog entries. That repetition is what makes the
+a status component, an incident, a subprocessor's responsibility and the disclosure
+channel on the trust page; the deduplication service is a responsibility on one job,
+an incident, and two changelog entries. That repetition is what makes the
 company read as one company, so check the other surfaces before changing a detail.
 
 ## Design
@@ -122,9 +129,10 @@ A third is `feed/index.html`, which is the whole point of that page: the feature
 and the generated titles are product output, framed as output by the bar above them
 and the line beneath. The rest of that page — headings, lede, pager — is house voice.
 
-The careers, status and changelog pages hold no specimen. Job descriptions are house
-voice, each written as competent copy by a hiring manager who has never spoken to the
-other eleven; incident updates and release notes are the company writing about itself.
+The careers, status, changelog and trust pages hold no specimen. Job descriptions are
+house voice, each written as competent copy by a hiring manager who has never spoken to
+the other eleven; incident updates, release notes and the trust centre are the company
+writing about itself.
 
 Both are framed as product output. Everything else on the page is house voice.
 
@@ -153,8 +161,11 @@ the site.
 ## URLs and deploys
 
 - **The four absolute URLs move together.** `canonical`, `og:url`, `og:image` and
-  `twitter:image` are hardcoded in `index.html`. Change one, change all four. The
-  README documents the one-command swap for when a custom domain is attached.
+  `twitter:image` are hardcoded in the head of every indexed page, and all four point
+  at `https://llm-slop.com`. Change one, change all four, on every page. A new
+  sub-page copies the block and swaps the path in `canonical` and `og:url`;
+  `og:image` and `twitter:image` stay on the root `og.png`. `careers/job.html` and
+  `404.html` are `noindex` and carry none of them.
 - **Deploys are branch-based.** Pages serves `main` from the repo root. There is no
   build step, and no workflow deploys anything — the one workflow in
   `.github/workflows/` only reports on pull requests. `.nojekyll` keeps the files
@@ -162,7 +173,11 @@ the site.
   `main` republishes. Enable it once under **Settings → Pages → Build and
   deployment → Deploy from a branch**, branch `main`, folder `/ (root)`.
 
-## Attaching a custom domain
+## The custom domain
+
+`llm-slop.com` is attached, and `CNAME` in the repo root is what holds it — Pages
+rewrites that file from the repository setting, so deleting it drops the domain.
+These are the steps it took, kept for the next time:
 
 1. Point the apex at GitHub Pages with four `A` records for `@`:
    `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, plus
@@ -172,12 +187,13 @@ the site.
    first.
 2. Enter the domain under **Settings → Pages → Custom domain**.
 3. When the DNS check passes, tick **Enforce HTTPS**.
-4. Repoint the four hardcoded absolute URLs:
+4. Repoint the hardcoded absolute URLs on every page that has them:
 
    ```bash
-   sed -i 's|https://llm-slop.github.io/llm-slop|https://your-domain.com|g' index.html
+   sed -i 's|https://old-address|https://your-domain.com|g' \
+     index.html */index.html
    ```
 
    The site works without step 4, because GitHub redirects the old address.
-   Skipping it fails silently: the cards and canonical tag keep pointing at
-   `github.io` and nothing looks broken.
+   Skipping it fails silently: the cards and canonical tags keep pointing at the
+   old host and nothing looks broken.
