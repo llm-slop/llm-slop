@@ -61,7 +61,8 @@ That is fine for a footer and useless as a way in.
 So the nav carries the real pages, and the nav is the thing to update when you add
 one. It has two parts, both repeated in the markup of all seven pages:
 
-- Four inline links — Product, Pricing, Careers, Status — which hide below 720px.
+- Five inline links — Product, Pricing, Careers, Status, Trust — which hide below
+  720px.
 - A **Menu** button, visible at every width, opening a panel that lists every page
   that exists. On a phone this is the only navigation there is, so it is not
   optional decoration.
