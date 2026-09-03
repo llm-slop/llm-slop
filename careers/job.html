@@ -39,7 +39,7 @@
       </div>
       <div>
         <h4 class="mono">Company</h4>
-        <a href="../careers/" aria-current="page">Careers (14 open)</a>
+        <a href="../careers/" aria-current="page">Careers (15 open)</a>
       </div>
       <div>
         <h4 class="mono">Resources</h4>
@@ -52,7 +52,7 @@
 </nav>
 
 <header class="jhead"><div class="wrap">
-  <a class="back" href="./#openings">&larr; All 14 openings</a>
+  <a class="back" href="./#openings">&larr; All 15 openings</a>
   <h1 id="jtitle">Loading the requisition</h1>
   <div class="jmeta mono" id="jtags"></div>
 </div></header>
@@ -95,7 +95,7 @@
     </div>
     <div>
       <h4>Company</h4>
-      <a href="./">Careers (14 open, 0 real)</a><a href="../#pricing">Pricing</a><a href="../#bench">Benchmarks</a>
+      <a href="./">Careers (15 open, 0 real)</a><a href="../#pricing">Pricing</a><a href="../#bench">Benchmarks</a>
     </div>
     <div>
       <h4>Resources</h4>
@@ -462,6 +462,33 @@ var ROLES = {
   ]
 },
 
+'fall-guy': {
+  title: 'Fall Guy',
+  team: 'People & Ops', loc: 'Denver (HQ)', type: 'Fixed-term', level: 'L5',
+  req: 'REQ-4464', opened: '6 months ago',
+  comp: '$151,000 – $154,000 · severance discussed during onboarding',
+  about: [
+    'Program Accountability joins cross-functional initiatives after the outcome is known. The team gives complex failures a single owner, which makes the org chart easier to read.',
+    'This is a high-visibility fixed-term role. Your name will appear in every postmortem and no planning document.'
+  ],
+  does: [
+    'Assume ownership of projects you were not staffed on.',
+    'Present a corrective action plan drafted before your start date.',
+    'Maintain the decision log. Every decision by a previous owner moves to your section during onboarding.',
+    'Exit after two quarters. The succession plan is the next Fall Guy.'
+  ],
+  looking: [
+    'Five years in programme management, risk or being copied late.',
+    'Comfort defending timelines approved before your start date.',
+    'You can say “I own this” in rooms where ownership is being assigned.',
+    'A stable LinkedIn profile. Title changes should look voluntary.'
+  ],
+  nice: [
+    'Experience inheriting a red programme and a green dashboard.',
+    'References from leaders who no longer appear on the org chart.'
+  ]
+},
+
 'chief-of-staff': {
   title: 'Chief of Staff to the Chief of Staff',
   team: 'People & Ops', loc: 'Remote (Global)', type: 'Full-time', level: 'L6',
@@ -513,7 +540,7 @@ if(!role){
   main.appendChild(el('p', null,
     'It may have been filled, withdrawn, or generated in error. Two of those have never happened.'));
   var back = el('p');
-  var a = el('a', null, 'See the 14 roles that are open →');
+  var a = el('a', null, 'See the 15 roles that are open →');
   a.href = './#openings';
   back.style.marginTop = '22px';
   back.appendChild(a);
