@@ -32,10 +32,10 @@ in the other. A new sub-page links `../site.css` and copies the nav and footer m
 from an existing one; the footer is the same three columns everywhere, so a new
 surface gets linked from every other page by adding it there.
 
-- `careers/index.html` — careers landing page and job board. All twelve listings are
-  static markup; the JS only filters them.
+- `careers/index.html` — careers landing page and job board. All listings are static
+  markup; the JS only filters them.
 - `careers/job.html` — one template for every listing, rendered from `?role=<slug>`.
-  The twelve job descriptions live in the `ROLES` object at the top of its script.
+  The job descriptions live in the `ROLES` object at the top of its script.
   An unknown or missing slug renders a "not open" page rather than an empty one.
 - `status/index.html` — status page. Component rows are static; the JS only draws the
   90-day strips, from the `data-down` and `data-part` day indices on each row (a range
@@ -70,8 +70,8 @@ Adding it to the footer alone buries it among the jokes. Mark the current page w
 Keep the joke links. `href="#"` in the footer is the bit working as intended; the
 fix for discoverability is a better nav, not fewer jokes.
 
-Two counts are load-bearing and appear in more than one place. The careers site has
-twelve roles, which the home page footer also claims ("Careers (12 open, 0 real)").
+Two counts are load-bearing and appear in more than one place. The careers role
+count is repeated in page copy, navigation and footers across the site.
 The changelog totals 604 releases: thirteen listed individually plus the grouped
 "591 releases" entry at the bottom. Changing either means changing it everywhere.
 
