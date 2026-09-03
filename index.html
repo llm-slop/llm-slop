@@ -67,7 +67,7 @@ p{margin:0}
 /* nav */
 .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
   background:rgba(8,7,13,.82);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;gap:24px;height:62px}
+.nav > .wrap{display:flex;align-items:center;gap:24px;height:62px}
 .brand{font-weight:700;font-size:19px;letter-spacing:-.04em;text-decoration:none;white-space:nowrap}
 .brand span{color:var(--slop)}
 .ver{font-size:10.5px;color:var(--dimmer);border:1px solid var(--line);
@@ -80,6 +80,18 @@ p{margin:0}
   background:var(--panel2);color:var(--text);cursor:pointer;font-family:inherit}
 .btn-go{background:var(--slop);color:#0b1300;border-color:var(--slop);font-weight:700}
 .btn-lg{padding:14px 26px;font-size:16px}
+
+/* nav menu */
+.menu-btn{font-weight:500}
+.menu{position:absolute;left:0;right:0;top:100%;background:var(--panel);
+  border-bottom:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.menu[hidden]{display:none}
+.menu .wrap{padding-top:26px;padding-bottom:30px}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:26px}
+.menu-grid h4{margin:0 0 11px;font-size:11.5px;color:var(--dimmer);font-weight:500}
+.menu-grid a{display:block;padding:7px 0;text-decoration:none;color:var(--dim);font-size:15px}
+.menu-grid a:hover{color:var(--text)}
+.menu-grid a[aria-current]{color:var(--slop)}
 
 /* hero */
 .hero{padding:96px 0 20px;text-align:center}
@@ -226,9 +238,9 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
 }
 @media (max-width:720px){
   .navlinks{display:none}
-  .nav .wrap{gap:12px}
-  /* .navlinks carried the margin-left:auto that right-aligned the CTA */
-  .nav .btn{margin-left:auto}
+  .nav > .wrap{gap:12px}
+  /* .navlinks carried the margin-left:auto that right-aligned the buttons */
+  .nav .menu-btn{margin-left:auto}
   .row{grid-template-columns:1fr;gap:7px}
   .bar.win{margin-right:0}
   .cookie{left:12px;right:12px;max-width:none;bottom:12px}
@@ -240,21 +252,45 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
   html{scroll-behavior:auto}
 }
 </style>
+<script src="site.js" defer></script>
 </head>
 <body>
 
-<nav class="nav"><div class="wrap">
-  <a class="brand" href="#">llm<span>-</span>slop</a>
+<nav class="nav">
+  <div class="wrap">
+  <a class="brand" href="./">llm<span>-</span>slop</a>
   <span class="ver mono">v4.1-turbo-preview-final-v2</span>
   <div class="navlinks">
     <a href="#features">Product</a>
-    <a href="#bench">Benchmarks</a>
     <a href="#pricing">Pricing</a>
-    <a href="#api">Docs</a>
     <a href="careers/">Careers</a>
+    <a href="status/">Status</a>
   </div>
-  <a class="btn" href="#pricing">Book a demo</a>
-</div></nav>
+  <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+  <a class="btn btn-go" href="#pricing">Book a demo</a>
+  </div>
+  <div class="menu" id="menu" hidden><div class="wrap">
+    <div class="menu-grid">
+      <div>
+        <h4 class="mono">Product</h4>
+        <a href="#features">Features</a>
+        <a href="#bench">Benchmarks</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#api">API docs</a>
+      </div>
+      <div>
+        <h4 class="mono">Company</h4>
+        <a href="careers/">Careers (12 open)</a>
+      </div>
+      <div>
+        <h4 class="mono">Resources</h4>
+        <a href="feed/">The Feed</a>
+        <a href="changelog/">Changelog</a>
+        <a href="status/">Status</a>
+      </div>
+    </div>
+  </div></div>
+</nav>
 
 <header class="hero"><div class="wrap">
   <div class="pill"><span class="dot"></span><span class="mono">Series B closed. We are not saying how much.</span></div>
@@ -460,7 +496,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
   <div class="fgrid">
     <div>
       <h4>Product</h4>
-      <a href="#">Generate</a><a href="#">Regenerate</a><a href="#">Regenerate again</a><a href="#">Integrations</a>
+      <a href="#api">Generate</a><a href="#api">Regenerate</a><a href="#api">Regenerate again</a><a href="#">Integrations</a>
     </div>
     <div>
       <h4>Solutions</h4>
@@ -468,11 +504,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
     </div>
     <div>
       <h4>Company</h4>
-      <a href="#">About</a><a href="careers/">Careers (12 open, 0 real)</a><a href="#">Manifesto</a><a href="#">Manifesto v2</a>
+      <a href="careers/">Careers (12 open, 0 real)</a><a href="#">About</a><a href="#">Manifesto</a><a href="#">Manifesto v2</a>
     </div>
     <div>
       <h4>Resources</h4>
-      <a href="#">Blog (41,000 posts)</a><a href="#">Whitepaper</a><a href="#">The State of Slop 2026</a><a href="#">Status</a>
+      <a href="feed/">The Feed (41,000 posts)</a><a href="changelog/">Changelog</a><a href="status/">Status</a><a href="#">Whitepaper</a><a href="#">The State of Slop 2026</a>
     </div>
     <div>
       <h4>Legal</h4>
