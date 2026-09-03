@@ -39,7 +39,7 @@
       </div>
       <div>
         <h4 class="mono">Company</h4>
-        <a href="../careers/" aria-current="page">Careers (15 open)</a>
+        <a href="../careers/" aria-current="page">Careers (16 open)</a>
       </div>
       <div>
         <h4 class="mono">Resources</h4>
@@ -52,7 +52,7 @@
 </nav>
 
 <header class="jhead"><div class="wrap">
-  <a class="back" href="./#openings">&larr; All 15 openings</a>
+  <a class="back" href="./#openings">&larr; All 16 openings</a>
   <h1 id="jtitle">Loading the requisition</h1>
   <div class="jmeta mono" id="jtags"></div>
 </div></header>
@@ -95,7 +95,7 @@
     </div>
     <div>
       <h4>Company</h4>
-      <a href="./">Careers (15 open, 0 real)</a><a href="../#pricing">Pricing</a><a href="../#bench">Benchmarks</a>
+      <a href="./">Careers (16 open, 0 real)</a><a href="../#pricing">Pricing</a><a href="../#bench">Benchmarks</a>
     </div>
     <div>
       <h4>Resources</h4>
@@ -381,6 +381,33 @@ var ROLES = {
   ]
 },
 
+'lead-waifu-engineer': {
+  title: 'Lead Waifu Engineer',
+  team: 'Design & Docs', loc: 'Remote (Global)', type: 'Full-time', level: 'L6',
+  req: 'REQ-4467', opened: '8 months ago',
+  comp: '$198,000 – $202,000 · merchandise counted separately from equity',
+  about: [
+    'Character Systems owns Waifu, the illustrated enterprise assistant shown in launch decks, booth graphics and one loading state. Customers cannot access her. She is our highest-retention feature.',
+    'You will lead the pipeline from character sheet to production asset and support the three engineering teams that cite her as a dependency.'
+  ],
+  does: [
+    'Maintain a canonical character model across 2,400 assets. There are nineteen canonical models.',
+    'Build generation and review tooling so every pose is on-brand and no prompt survives the audit log.',
+    'Own continuity: eye colour, badge orientation and the unexplained headset. The API may change; the ribbon may not.',
+    'Set asset SLOs. Launches are blocked when Waifu is unavailable even if the product is not.'
+  ],
+  looking: [
+    'Six years in graphics, generative media or front-end systems that became media pipelines.',
+    'Production experience with diffusion models, asset provenance and deterministic review.',
+    'Strong opinions about reproducible output from non-deterministic systems.',
+    'You can lead reviews in which every stakeholder discusses a fictional colleague as headcount.'
+  ],
+  nice: [
+    'Rigging, fine-tuning or design systems at unnecessary scale.',
+    'You have deprecated a mascot without causing a roadmap reset.'
+  ]
+},
+
 'technical-writer': {
   title: 'Technical Writer',
   team: 'Design & Docs', loc: 'Remote (Global)', type: 'Full-time', level: 'L4',
@@ -540,7 +567,7 @@ if(!role){
   main.appendChild(el('p', null,
     'It may have been filled, withdrawn, or generated in error. Two of those have never happened.'));
   var back = el('p');
-  var a = el('a', null, 'See the 15 roles that are open →');
+  var a = el('a', null, 'See the 16 roles that are open →');
   a.href = './#openings';
   back.style.marginTop = '22px';
   back.appendChild(a);
