@@ -32,12 +32,12 @@
 
 ## 🌟 Introduction
 
-In today's rapidly evolving content landscape, organizations are under unprecedented
-pressure to produce. But here's the thing — most teams are still approaching content
+In today's rapidly evolving landscape, organizations are under unprecedented
+pressure. But here's the thing — most teams are still approaching content
 the way they approached it in 2019. That's not just outdated — it's a missed
 opportunity.
 
-llm-slop isn't just a content platform. It's a paradigm shift.
+llm-slop isn't just a platform. It's a paradigm shift.
 
 Let's dive in. 👇
 
@@ -58,8 +58,9 @@ Let's dive in. 👇
 | Feature | Description | Status |
 | --- | --- | --- |
 | Content generation | Generates content | ✅ Available |
-| Volume scaling | Scales volume | ✅ Available |
-| Brand voice | Voice, but for your brand | ✅ Available |
+| Data unification | Unifies data | ✅ Available |
+| Edge deployment | Deploys, to the edge | ✅ Available |
+| Agentic workflows | Agentic | ✅ Available |
 | Insight | — | ⏳ Not planned |
 
 ## 🏗️ Architecture
