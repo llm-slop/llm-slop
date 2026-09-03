@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open role — llm-slop</title>
+<meta name="description" content="An open role at llm-slop. Written by the hiring manager, unedited.">
+<meta name="theme-color" content="#08070d">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308070d'/%3E%3Crect x='11' y='29' width='42' height='6' rx='3' fill='%23c6ff3f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="careers.css">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="../">llm<span>-</span>slop</a>
+  <span class="ver mono">v4.1-turbo-preview-final-v2</span>
+  <div class="navlinks">
+    <a href="../#features">Product</a>
+    <a href="../#bench">Benchmarks</a>
+    <a href="../#pricing">Pricing</a>
+    <a href="../#api">Docs</a>
+    <a href="./" aria-current="page">Careers</a>
+  </div>
+  <a class="btn" href="./#openings">All openings</a>
+</div></nav>
+
+<header class="jhead"><div class="wrap">
+  <a class="back" href="./#openings">&larr; All 12 openings</a>
+  <h1 id="jtitle">Loading the requisition</h1>
+  <div class="jmeta mono" id="jtags"></div>
+</div></header>
+
+<div class="wrap">
+  <noscript>
+    <p style="color:var(--dim);padding:40px 0">
+      This listing renders from the job board. Open it from
+      <a href="./#openings">the openings page</a>.
+    </p>
+  </noscript>
+
+  <div class="jbody">
+    <main id="jmain"></main>
+
+    <aside class="aside">
+      <dl id="jfacts"></dl>
+      <button class="btn btn-go" id="applyBtn">Apply</button>
+      <p class="fine">One click. We take it from here.</p>
+
+      <div class="apply" id="applyOut" hidden>
+        <ul class="trace mono" id="trace"></ul>
+        <p class="fine" id="traceFine"></p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer style="border-top:1px solid var(--line);padding:56px 0 100px;font-size:13.5px;color:var(--dimmer)">
+  <div class="wrap">
+    <p class="mono" style="margin-bottom:18px">
+      llm-slop is an equal opportunity employer. Every application receives the same consideration, which is 0.3 seconds.
+    </p>
+    <p class="mono">
+      <a href="./" style="text-decoration:none">&larr; Careers</a>
+      &nbsp;·&nbsp; &copy; 2026 llm-slop, inc. Some rights reserved. Most generated.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+var ROLES = {
+
+'staff-engineer-output-velocity': {
+  title: 'Staff Engineer, Output Velocity',
+  team: 'Engineering', loc: 'Remote (Global)', type: 'Full-time', level: 'L6',
+  req: 'REQ-4417', opened: '14 months ago',
+  comp: '$212,000 – $214,000 · band last reviewed in 2019',
+  about: [
+    'Output Velocity owns the path from a customer’s single input to their forty thousand words. We are four engineers and one queue. The queue is the part with a roadmap.',
+    'This is a hands-on staff role. You will be the most senior person on a system nobody has described end to end, including in this posting.'
+  ],
+  does: [
+    'Drive p99 generation latency below the threshold at which anyone checks it.',
+    'Own the retry path. Every retry is billed, so treat it as revenue-critical rather than as a bug.',
+    'Shard the corpus across all thirty-one regions, none of which are near a customer.',
+    'Decommission the deduplication service. It was removing sixty percent of output.'
+  ],
+  looking: [
+    'Eight years building distributed systems, or three years and a strong opinion about them.',
+    'Comfort operating a service with no defined correctness criteria.',
+    'Experience with queues that cannot be drained.',
+    'You do not need to know what the output is for. Nobody on the team does.'
+  ],
+  nice: [
+    'Kafka.',
+    'You have deleted a deduplication service before and can speak to it calmly.'
+  ]
+},
+
+'prompt-ops-engineer': {
+  title: 'Prompt Ops Engineer',
+  team: 'Engineering', loc: 'Denver (HQ)', type: 'Full-time', level: 'L5',
+  req: 'REQ-4402', opened: '17 months ago',
+  comp: '$168,000 – $171,000 · four days on site, one floor',
+  about: [
+    'Prompt Ops maintains the 912 prompts running in production. Around 400 of them contradict another prompt. There is a ticket, and it is assigned to this role.',
+    'We are a platform team in the sense that everything breaks through us.'
+  ],
+  does: [
+    'Own the prompt registry, a spreadsheet with 912 rows and no owner column.',
+    'Ship prompt changes straight to production. There is no staging environment and the ticket for one is in the registry.',
+    'Investigate why output quality improves during outages.',
+    'Chair the weekly prompt review. You will be the only attendee, as your predecessor was.'
+  ],
+  looking: [
+    'Experience running production systems by editing strings.',
+    'The ability to read 912 prompts. This is not a screening exercise, it is the job.',
+    'Calm under conditions with no rollback.',
+    'Familiarity with YAML, where four of the prompts live for reasons that predate everyone here.'
+  ],
+  nice: [
+    'On-call experience at a company where the pager meant something.',
+    'You have opinions about idempotency that survived contact with a business.'
+  ]
+},
+
+'ml-engineer-punctuation': {
+  title: 'Machine Learning Engineer, Punctuation',
+  team: 'Engineering', loc: 'Remote (US)', type: 'Full-time', level: 'L6',
+  req: 'REQ-4390', opened: '9 months ago',
+  comp: '$205,000 – $209,000 · options priced against a valuation we generated',
+  about: [
+    'Punctuation owns Dashformer, the em dash model. It is the only model in the company that meets its accuracy target, which is why it is the only one that has a target.',
+    'The team is two people and a GPU budget larger than Marketing.'
+  ],
+  does: [
+    'Train and serve em dash placement at 41,000 words per second, sustained.',
+    'Extend coverage to the semicolon. Two customers have asked. On inspection both were the same customer.',
+    'Maintain the evaluation set. You will also be the person who writes the evaluation set.',
+    'Publish the results internally, then externally, then as a whitepaper, then as a webinar.'
+  ],
+  looking: [
+    'Strong PyTorch and a serving stack you have taken to production yourself.',
+    'Experience with models whose business value nobody can articulate.',
+    'Firm views on the em dash, held consistently for four years.',
+    'Comfortable being the one functioning component of a platform.'
+  ],
+  nice: [
+    'Publications, in venues that exist.',
+    'Prior work on tokenisation, or on anything measurable.'
+  ]
+},
+
+'head-of-content': {
+  title: 'Head of Content',
+  team: 'Marketing', loc: 'Remote (Global)', type: 'Full-time', level: 'L5',
+  req: 'REQ-4361', opened: '11 months ago',
+  comp: '$164,000 – $167,000 · bonus tied to volume',
+  about: [
+    'Content is a team of one, supported by a platform that produces the output of nine hundred. You are the one.',
+    'Your predecessor published 41,000 posts in fourteen months and left no handover, which we took as confidence in the system.'
+  ],
+  does: [
+    'Own the blog. It holds 41,000 posts. Twelve have been read end to end.',
+    'Set editorial standards, then reconcile them with a publishing target of 900 posts a week.',
+    'Approve output you will not have time to read. This is expected, and it is fine.',
+    'Report on content ROI using a model we built for reporting on content ROI.'
+  ],
+  looking: [
+    'Seven years in content leadership at a company with a publishing motion.',
+    'Comfortable owning a channel whose organic traffic is down 61%.',
+    'You can write. You will not.',
+    'Editorial judgment, which you will exercise once, in week one.'
+  ],
+  nice: [
+    'Experience migrating a CMS you were told not to migrate.',
+    'You have killed a content programme and can describe how it felt.'
+  ]
+},
+
+'growth-marketer-volume': {
+  title: 'Growth Marketer, Volume',
+  team: 'Marketing', loc: 'Remote (US)', type: 'Full-time', level: 'L4',
+  req: 'REQ-4433', opened: '5 months ago',
+  comp: '$142,000 – $146,000 · uncapped, in the sense that it is not tracked',
+  about: [
+    'Growth owns every channel where output can be published without approval. That is currently eleven channels and rising.',
+    'We run on a weekly cadence, a shared dashboard, and a target nobody has revised downward.'
+  ],
+  does: [
+    'Take published output up 40x year on year.',
+    'Own the daily newsletter. Open rate is not instrumented and will not be.',
+    'Run experiments, then ship both the winner and the loser. Volume is the metric.',
+    'Own SEO, which in this organisation is a synonym for word count.'
+  ],
+  looking: [
+    'Four years in growth, ideally at a company that had a product.',
+    'Fluent in dashboards nobody audits.',
+    'You can defend a 40x target in a quarterly review without laughing.',
+    'Traffic is not a metric on this role. Please read that twice before applying.'
+  ],
+  nice: [
+    'Paid social, at spend levels that were later questioned.',
+    'You have named a funnel stage that stuck.'
+  ]
+},
+
+'enterprise-account-executive': {
+  title: 'Enterprise Account Executive',
+  team: 'Sales & Success', loc: 'London', type: 'Full-time', level: 'Senior',
+  req: 'REQ-4288', opened: '22 months ago',
+  comp: '£150,000 OTE · 50/50 split · accelerators after 100%, in principle',
+  about: [
+    'Enterprise sells into organisations of 5,000 seats and up. Our average deal is $340,000 and our average implementation is a Slack channel.',
+    'You will be the fourth AE in this territory. The first three left for reasons that were documented.'
+  ],
+  does: [
+    'Carry a $4.1M annual number against a product with four pricing models.',
+    'Run forty-minute discovery calls. The forty minutes are the product.',
+    'Navigate procurement, security review, and the second security review run by the first team.',
+    'Describe the platform. Each call may use a different description and we do not police this.'
+  ],
+  looking: [
+    'Six years closing six-figure enterprise deals, with references we may generate.',
+    'Comfortable demoing an environment that generates its own data live.',
+    'You have sold a platform layer and can say what one is.',
+    'Willingness to say "AI-native" in a room of adults, repeatedly, without flinching.'
+  ],
+  nice: [
+    'MEDDIC, or any framework you will abandon in month two.',
+    'An existing network in financial services, healthcare, or wherever the budget currently is.'
+  ]
+},
+
+'customer-success-manager-kyle': {
+  title: 'Customer Success Manager (Kyle)',
+  team: 'Sales & Success', loc: 'Remote (Global)', type: 'Full-time', level: 'L4',
+  req: 'REQ-4404', opened: '13 months ago',
+  comp: '$118,000 – $122,000 · no retention component, by design',
+  about: [
+    'Every Enterprise customer is assigned a dedicated CSM named Kyle. Kyle is a persona, maintained across three time zones. We are hiring a fourth Kyle.',
+    'The role is high-visibility in the sense that Kyle is on every account plan we have ever written.'
+  ],
+  does: [
+    'Own 180 accounts as Kyle.',
+    'Cover the shared Slack channels. They have been unanswered since March and the backlog transfers with the role.',
+    'Run quarterly business reviews from a deck the platform generates the morning of.',
+    'Escalate nothing. There is no tier two.'
+  ],
+  looking: [
+    'Three years in customer success at a B2B software company.',
+    'You are comfortable being addressed as Kyle, in writing and on video.',
+    'Ability to renew an account that has not logged in this year.',
+    'Your own name is not required for this role and will not be used.'
+  ],
+  nice: [
+    'Experience with a CRM we will replace within the quarter.',
+    'A second language, so that Kyle can have one.'
+  ]
+},
+
+'product-designer-dashboards': {
+  title: 'Product Designer, Dashboards',
+  team: 'Design & Docs', loc: 'Hybrid — Denver', type: 'Full-time', level: 'L5',
+  req: 'REQ-4371', opened: '10 months ago',
+  comp: '$158,000 – $161,000 · three days on site, one floor',
+  about: [
+    'Design is two people and a component library containing four hundred buttons. The dashboard is our most-viewed surface and our least-used one.',
+    'You will report into Product, then into Engineering, then back into Product. This has already happened twice.'
+  ],
+  does: [
+    'Own the screen customers refer to as "the dashboard".',
+    'Design the onboarding checklist. The checklist turning green is the product, so treat it accordingly.',
+    'Add charts. The charts do not require underlying data; the data team is a roadmap item.',
+    'Maintain the component library. Do not remove buttons.'
+  ],
+  looking: [
+    'Five years in product design, ideally B2B, ideally recent.',
+    'Figma, and the patience to work in one file with eleven pages.',
+    'You can design an empty state you will never see, because the state is never empty.',
+    'Comfortable designing for a user we have not yet identified.'
+  ],
+  nice: [
+    'Front-end skills, which will be used immediately and permanently.',
+    'You have run a design review that changed a decision.'
+  ]
+},
+
+'technical-writer': {
+  title: 'Technical Writer',
+  team: 'Design & Docs', loc: 'Remote (Global)', type: 'Full-time', level: 'L4',
+  req: 'REQ-4441', opened: '2 months ago',
+  comp: '$126,000 – $129,000 · new function, new band',
+  about: [
+    'Documentation is a new function here. The API has one endpoint and two parameters, one of which is not supported and will not be.',
+    'You are the first hire and will set the standard, which will then be applied to nothing else.'
+  ],
+  does: [
+    'Document the endpoint. This has been scoped at eighteen months.',
+    'Maintain the changelog, which currently reads "various improvements" 604 times.',
+    'Write the migration guide. There is nothing to migrate from. Write it anyway.',
+    'Decline the platform’s offer to write the documentation. It has offered.'
+  ],
+  looking: [
+    'Three years of technical writing for a developer audience.',
+    'You write short sentences. This is disqualifying elsewhere in the company.',
+    'Comfortable documenting behaviour you cannot reproduce.',
+    'Markdown, and the discipline to keep it in Markdown.'
+  ],
+  nice: [
+    'You have read an OpenAPI spec voluntarily.',
+    'Experience deprecating a page rather than adding one.'
+  ]
+},
+
+'research-scientist-benchmarks': {
+  title: 'Research Scientist, Benchmarks',
+  team: 'Research', loc: 'Remote (Global)', type: 'Full-time', level: 'L6',
+  req: 'REQ-4310', opened: '19 months ago',
+  comp: '$219,000 – $224,000 · conference budget, redeemable at SlopConf',
+  about: [
+    'Research designs the benchmarks llm-slop wins. We publish four papers a year, all of them at our own conference.',
+    'The team operates independently of Product, which is why our numbers are so much better than theirs.'
+  ],
+  does: [
+    'Design evaluations on which our model scores 41,000 and the nearest competitor scores 3,100.',
+    'Author the methodology. Publication is guaranteed and peer review is internal and enthusiastic.',
+    'Own the leaderboard. It is our leaderboard.',
+    'Present at SlopConf. Attendance is mandatory, and internal.'
+  ],
+  looking: [
+    'A PhD, or the confidence of one.',
+    'A publication record in venues that exist.',
+    'Experience defining a metric before deciding what it measures.',
+    'Statistics, to the extent required.'
+  ],
+  nice: [
+    'You have written a rebuttal nobody asked for.',
+    'Prior work on evaluation, ideally the kind that was later criticised.'
+  ]
+},
+
+'people-partner': {
+  title: 'People Partner',
+  team: 'People & Ops', loc: 'Denver (HQ)', type: 'Full-time', level: 'L5',
+  req: 'REQ-4426', opened: '7 months ago',
+  comp: '$134,000 – $138,000 · four days on site, one floor',
+  about: [
+    'People supports ninety teams of two through a reorganisation that began in March and has no announced end.',
+    'This role sits with the business rather than in a centre of excellence, because there is not one.'
+  ],
+  does: [
+    'Partner with ninety managers, forty of whom manage one person, who is also a manager.',
+    'Run the performance cycle. The rubric was generated and has not been opened.',
+    'Own headcount planning against a requisition list that grows without approval.',
+    'Maintain the org chart. It is a Miro board and it is load-bearing.'
+  ],
+  looking: [
+    'Five years as an HR business partner at a company scaling quickly, or appearing to.',
+    'Comfortable with ambiguity, defined here as the absence of a reporting line.',
+    'You can run calibration for roles that have no levels.',
+    'Discretion. There is a great deal to be discreet about.'
+  ],
+  nice: [
+    'Experience closing a location.',
+    'You have told a founder something they did not want to hear and stayed employed.'
+  ]
+},
+
+'chief-of-staff': {
+  title: 'Chief of Staff to the Chief of Staff',
+  team: 'People & Ops', loc: 'Remote (Global)', type: 'Full-time', level: 'L6',
+  req: 'REQ-4448', opened: '3 weeks ago',
+  comp: '$188,000 – $191,000 · title subject to change, and it will',
+  about: [
+    'This role reports to the Chief of Staff. The Chief of Staff reports to this role. Legal has flagged the structure and we are looking at it in Q3.',
+    'It is the highest-leverage seat in the company, by a measure the seat itself produces.'
+  ],
+  does: [
+    'Prepare the board update. Then prepare the update on the board update.',
+    'Own the weekly leadership sync, which produces the summary that is later summarised.',
+    'Track the top five company priorities. There are nineteen.',
+    'Represent the Chief of Staff in meetings the Chief of Staff also attends.'
+  ],
+  looking: [
+    'A consulting or banking background, or a convincing account of one.',
+    'You can write a memo nobody finishes and defend it in a meeting nobody scheduled.',
+    'Exceptionally organised. This will not help.',
+    'Availability across all thirty-one regions.'
+  ],
+  nice: [
+    'You have built a dashboard for an executive who never opened it.',
+    'Comfort with a title longer than your remit.'
+  ]
+}
+
+};
+
+function el(tag, cls, text){
+  var n = document.createElement(tag);
+  if(cls) n.className = cls;
+  if(text != null) n.textContent = text;
+  return n;
+}
+function list(parent, heading, items){
+  parent.appendChild(el('h2', null, heading));
+  var ul = el('ul');
+  items.forEach(function(i){ ul.appendChild(el('li', null, i)); });
+  parent.appendChild(ul);
+}
+
+var slug = (location.search.match(/[?&]role=([\w-]+)/) || [])[1] || '';
+var role = ROLES[slug];
+var main = document.getElementById('jmain');
+
+if(!role){
+  document.getElementById('jtitle').textContent = 'This requisition is not open.';
+  main.appendChild(el('p', null,
+    'It may have been filled, withdrawn, or generated in error. Two of those have never happened.'));
+  var back = el('p');
+  var a = el('a', null, 'See the 12 roles that are open →');
+  a.href = './#openings';
+  back.style.marginTop = '22px';
+  back.appendChild(a);
+  main.appendChild(back);
+  var side = document.querySelector('.aside');
+  side.parentNode.removeChild(side);
+} else {
+  document.title = role.title + ' — llm-slop careers';
+  document.getElementById('jtitle').textContent = role.title;
+
+  var tags = document.getElementById('jtags');
+  [role.team, role.loc, role.type, role.level].forEach(function(t){
+    tags.appendChild(el('span', 'tag', t));
+  });
+
+  main.appendChild(el('h2', null, 'About the team'));
+  role.about.forEach(function(p){
+    var n = el('p', null, p);
+    n.style.marginBottom = '14px';
+    main.appendChild(n);
+  });
+  list(main, 'What you’ll do', role.does);
+  list(main, 'What we’re looking for', role.looking);
+  list(main, 'Nice to have', role.nice);
+
+  var facts = document.getElementById('jfacts');
+  [['Team', role.team], ['Location', role.loc], ['Employment', role.type],
+   ['Level', role.level], ['Compensation', role.comp],
+   ['Requisition', role.req + ' · opened ' + role.opened]].forEach(function(f){
+    facts.appendChild(el('dt', 'mono', f[0]));
+    facts.appendChild(el('dd', null, f[1]));
+  });
+}
+
+/* Apply: nothing is collected. The platform writes the application, reviews it,
+   and declines it, which is the entire product experience. */
+var btn = document.getElementById('applyBtn');
+if(btn){
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  btn.addEventListener('click', function(){
+    btn.disabled = true;
+    btn.textContent = 'Applied';
+    var out = document.getElementById('applyOut');
+    var trace = document.getElementById('trace');
+    out.hidden = false;
+    trace.textContent = '';
+    var steps = [
+      ['Application generated on your behalf. 4,200 words.', ''],
+      ['Reviewed by the platform. 0.3s.', ''],
+      ['Not moving forward.', 'no']
+    ];
+    function push(i){
+      if(i >= steps.length){
+        document.getElementById('traceFine').textContent =
+          'No application was collected. It was written, read and declined internally. This is the fastest we have ever moved.';
+        return;
+      }
+      trace.appendChild(el('li', steps[i][1] || null, steps[i][0]));
+      if(reduce) push(i + 1); else setTimeout(function(){ push(i + 1); }, 620);
+    }
+    push(0);
+  });
+}
+})();
+</script>
+</body>
+</html>

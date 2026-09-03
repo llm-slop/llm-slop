@@ -21,8 +21,24 @@ ones.
 
 ## Shape
 
-`index.html` is the entire site: markup, CSS and JS inline, in that one file.
+`index.html` is the home page: markup, CSS and JS inline, in that one file.
 `404.html` is a small standalone page in the same style.
+
+`careers/` is the careers site, and it is the one part that does not inline its CSS —
+two pages sharing one stylesheet beats two copies of it:
+
+- `careers/careers.css` — shared styles. The tokens at the top are copied from
+  `index.html`; change the palette in one and change it in the other.
+- `careers/index.html` — the careers landing page and the job board. All twelve
+  listings are static markup; the JS only filters them, so the board works without it.
+- `careers/job.html` — one template for every listing, rendered from `?role=<slug>`.
+  The twelve job descriptions live in the `ROLES` object at the top of its script.
+  An unknown or missing slug renders a "not open" page rather than an empty one.
+
+Adding or removing a role means editing two places: the listing markup in
+`careers/index.html` and the matching `ROLES` entry in `careers/job.html`. The
+`href` slug and the `ROLES` key have to match, and `data-team` on the listing has
+to match one of the filter chips or the role vanishes from every view.
 
 The point of the build is that there isn't one. No framework, no bundler, no
 committed `package.json`. Someone should be able to clone the repo and open the
@@ -32,6 +48,9 @@ machine, not a project dependency.)
 
 Sections run in reading order: nav, hero, logo wall, benchmarks, features,
 how-it-works, API, testimonials, pricing, counter, footer.
+
+The careers landing page runs: nav, hero, stat strip, principles, benefits, job
+board, hiring process, employee quotes, offices, footer.
 
 ## Design
 
@@ -53,6 +72,9 @@ Two places hold deliberate slop, and only these two:
 - the `open` / `mid` / `close` arrays in the generator script, which assemble the
   rotating fake LinkedIn post
 - the sample response in the API section
+
+The careers pages hold none. Job descriptions are house voice — each one written as
+competent copy by a hiring manager who has never spoken to the other eleven.
 
 Both are framed as product output. Everything else on the page is house voice.
 
