@@ -161,8 +161,11 @@ the site.
 ## URLs and deploys
 
 - **The four absolute URLs move together.** `canonical`, `og:url`, `og:image` and
-  `twitter:image` are hardcoded in `index.html`. Change one, change all four. The
-  README documents the one-command swap for when a custom domain is attached.
+  `twitter:image` are hardcoded in the head of every indexed page, and all four point
+  at `https://llm-slop.com`. Change one, change all four, on every page. A new
+  sub-page copies the block and swaps the path in `canonical` and `og:url`;
+  `og:image` and `twitter:image` stay on the root `og.png`. `careers/job.html` and
+  `404.html` are `noindex` and carry none of them.
 - **Deploys are branch-based.** Pages serves `main` from the repo root. There is no
   build step, and no workflow deploys anything — the one workflow in
   `.github/workflows/` only reports on pull requests. `.nojekyll` keeps the files
@@ -170,7 +173,11 @@ the site.
   `main` republishes. Enable it once under **Settings → Pages → Build and
   deployment → Deploy from a branch**, branch `main`, folder `/ (root)`.
 
-## Attaching a custom domain
+## The custom domain
+
+`llm-slop.com` is attached, and `CNAME` in the repo root is what holds it — Pages
+rewrites that file from the repository setting, so deleting it drops the domain.
+These are the steps it took, kept for the next time:
 
 1. Point the apex at GitHub Pages with four `A` records for `@`:
    `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, plus
@@ -180,12 +187,13 @@ the site.
    first.
 2. Enter the domain under **Settings → Pages → Custom domain**.
 3. When the DNS check passes, tick **Enforce HTTPS**.
-4. Repoint the four hardcoded absolute URLs:
+4. Repoint the hardcoded absolute URLs on every page that has them:
 
    ```bash
-   sed -i 's|https://llm-slop.github.io/llm-slop|https://your-domain.com|g' index.html
+   sed -i 's|https://old-address|https://your-domain.com|g' \
+     index.html */index.html
    ```
 
    The site works without step 4, because GitHub redirects the old address.
-   Skipping it fails silently: the cards and canonical tag keep pointing at
-   `github.io` and nothing looks broken.
+   Skipping it fails silently: the cards and canonical tags keep pointing at the
+   old host and nothing looks broken.
