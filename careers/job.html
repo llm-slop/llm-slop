@@ -39,7 +39,7 @@
       </div>
       <div>
         <h4 class="mono">Company</h4>
-        <a href="../careers/" aria-current="page">Careers (12 open)</a>
+        <a href="../careers/" aria-current="page">Careers (13 open)</a>
       </div>
       <div>
         <h4 class="mono">Resources</h4>
@@ -52,7 +52,7 @@
 </nav>
 
 <header class="jhead"><div class="wrap">
-  <a class="back" href="./#openings">&larr; All 12 openings</a>
+  <a class="back" href="./#openings">&larr; All 13 openings</a>
   <h1 id="jtitle">Loading the requisition</h1>
   <div class="jmeta mono" id="jtags"></div>
 </div></header>
@@ -95,7 +95,7 @@
     </div>
     <div>
       <h4>Company</h4>
-      <a href="./">Careers (12 open, 0 real)</a><a href="../#pricing">Pricing</a><a href="../#bench">Benchmarks</a>
+      <a href="./">Careers (13 open, 0 real)</a><a href="../#pricing">Pricing</a><a href="../#bench">Benchmarks</a>
     </div>
     <div>
       <h4>Resources</h4>
@@ -162,6 +162,33 @@ var ROLES = {
   nice: [
     'On-call experience at a company where the pager meant something.',
     'You have opinions about idempotency that survived contact with a business.'
+  ]
+},
+
+'tech-priest': {
+  title: 'Tech Priest',
+  team: 'Engineering', loc: 'Hybrid — Denver', type: 'Full-time', level: 'L7',
+  req: 'REQ-4459', opened: '1,100 years ago',
+  comp: '$228,000 – $231,000 · vesting pauses during maintenance windows',
+  about: [
+    'Runtime Liturgy owns the ceremony between code that passed review and code that serves traffic. We are three engineers, nine runbooks and one brass maintenance bell.',
+    'This is a hands-on reliability role. You will interpret metrics, bless deploys and keep legacy services alive long enough to become strategy.'
+  ],
+  does: [
+    'Approve production changes with the deployment checklist. The checklist is signed in ink and scanned into Git.',
+    'Operate the legacy inference cluster. Its hardware reached end of support before the company began.',
+    'Lead incident review. Root causes are recorded as doctrine and cannot recur by definition.',
+    'Maintain 186 runbooks, including the one that says not to read the others during an incident.'
+  ],
+  looking: [
+    'Seven years in site reliability, production engineering or an adjacent order.',
+    'Deep Linux and Kubernetes experience across systems with no service catalogue.',
+    'You can distinguish an invariant from a belief held by the longest-tenured engineer.',
+    'Calm on call. The pager uses a church bell sample and the file is hard-coded.'
+  ],
+  nice: [
+    'Experience decommissioning a service everyone believes is load-bearing.',
+    'You have restored a database from backup without first having to locate the backup.'
   ]
 },
 
@@ -459,7 +486,7 @@ if(!role){
   main.appendChild(el('p', null,
     'It may have been filled, withdrawn, or generated in error. Two of those have never happened.'));
   var back = el('p');
-  var a = el('a', null, 'See the 12 roles that are open →');
+  var a = el('a', null, 'See the 13 roles that are open →');
   a.href = './#openings';
   back.style.marginTop = '22px';
   back.appendChild(a);
