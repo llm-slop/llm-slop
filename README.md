@@ -1,9 +1,15 @@
 # llm-slop
 
-A parody landing page for a fictional company that sells AI-generated content by the
-word. Static, single page, no build step, no dependencies.
+A one-page parody of a SaaS company that sells AI-generated content by the word.
+Static, no build step, no dependencies.
 
-**Live:** https://llm-slop.github.io/llm-slop/
+Deploys to https://llm-slop.github.io/llm-slop/
+
+**Before writing or editing any copy, read
+[`.claude/skills/slop-voice/SKILL.md`](.claude/skills/slop-voice/SKILL.md).** It is
+the source of truth for what the joke is and how the site is allowed to sound. The
+page is a parody of slop, which means it can be ruined by writing that is merely
+fine — the skill explains how to avoid that, and what must stay true regardless.
 
 ## Files
 
@@ -11,8 +17,10 @@ word. Static, single page, no build step, no dependencies.
 | --- | --- |
 | `index.html` | The whole site — markup, inline CSS, inline JS. |
 | `404.html` | Custom not-found page. |
-| `og.png` | 1200×630 social preview image. |
+| `og.png` | 1200×630 social preview image. Generated; see below. |
 | `.nojekyll` | Tells GitHub Pages to serve the files as-is instead of running Jekyll. |
+| `tools/` | The social card generator. Not part of the site. |
+| `.claude/skills/slop-voice/` | Project purpose, voice and guardrails. |
 
 ## Running it locally
 
@@ -31,10 +39,6 @@ folder `/ (root)`.
 
 After that every push to `main` republishes within a minute or so. Deploy status
 shows up under **Settings → Pages** and in the repository's **Deployments**.
-
-An earlier version did this with an Actions workflow, which needed `pages: write`
-to create the site on first run. That permission isn't granted to `GITHUB_TOKEN`
-here, so the built-in branch deploy is the simpler path.
 
 ## Attaching llm-slop.com
 
@@ -58,9 +62,23 @@ here, so the built-in branch deploy is the simpler path.
 
 ## Editing the page
 
-Copy lives in `index.html` in reading order: nav, hero, logo wall, benchmarks,
+Sections appear in `index.html` in reading order: nav, hero, logo wall, benchmarks,
 features, how-it-works, API, testimonials, pricing, counter, footer. The design
-tokens are the CSS custom properties at the top of the `<style>` block.
+tokens are the CSS custom properties at the top of the `<style>` block — use those
+rather than hardcoding colours.
 
-The social image is generated from a separate template rather than by hand; if the
-tagline changes, regenerate `og.png` at 1200×630 to match.
+Check changes at 1280px and 390px, and with reduced motion enabled. Every animation
+on the page has a static fallback, and new ones need one too.
+
+## Regenerating the social card
+
+`og.png` is rendered from a template so it stays consistent with the site:
+
+```bash
+npm install playwright   # one-off, not committed
+node tools/make-og.mjs
+```
+
+Regenerate it whenever the hero tagline changes. The card is what people see when
+the link is shared, so a stale tagline there is the most visible error the site can
+have.
