@@ -1,6 +1,10 @@
 // Reports how each commit in a range declares its authorship, and whether the
 // pull request description agrees with the commits underneath it.
 //
+// Merge commits are skipped: a merge is not authored prose, and on a pull
+// request the checkout's own merge commit would otherwise report as human and
+// make every branch read as mixed.
+//
 // A commit is machine-authored when it carries the trailers
 //
 //     Slop-Provenance: machine
@@ -59,7 +63,13 @@ function commits(revs) {
   const FIELD = '\x1f';
   let log;
   try {
-    log = git(['log', '--reverse', `--format=%h${FIELD}%an${FIELD}%s${FIELD}%B${RECORD}`, revs]);
+    log = git([
+      'log',
+      '--reverse',
+      '--no-merges',
+      `--format=%h${FIELD}%an${FIELD}%s${FIELD}%B${RECORD}`,
+      revs,
+    ]);
   } catch {
     console.error(`cannot read range: ${revs}`);
     process.exit(2);
