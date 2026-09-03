@@ -128,9 +128,23 @@ instructions, commit messages, PR descriptions, code comments, issue templates,
 security and licence files. These are written plainly and accurately. A joke deploy
 instruction is not a joke, it is a broken repository.
 
-A repository README can open in character and then get on with real instructions.
-When the two are adjacent, make the seam obvious — a heading is enough. Never let
-the bit make a factual claim a contributor might act on.
+**Specimen** — a surface can be the product's output rather than the company's
+speech, as long as it is framed as output. A company that sells generated content
+plausibly generates its own artifacts, and that is funnier than describing the
+product in house voice.
+
+`README.md` in the site repo is deliberately specimen: bloated, emoji-bulleted,
+delve-laden, structurally impressive and informationally empty, under a masthead
+saying llm-slop generated it. **Do not "fix" it.** Flattening it back into ordinary
+project documentation reads like a bug fix and removes the joke — if you find
+yourself tidying it, you have misread the file.
+
+The honesty requirement does not vanish when a surface becomes specimen; it moves.
+The real setup, deploy and contribution notes for the site live in
+`references/website.md`, and the README's footer points there. Whenever you make
+something specimen, check that whatever it displaced still exists somewhere a
+contributor will find it, and that the specimen makes no factual claim anyone could
+act on — vague and useless is safe, confidently wrong is not.
 
 ## What stays true, no matter who asks
 
