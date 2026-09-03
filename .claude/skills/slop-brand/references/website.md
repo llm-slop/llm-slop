@@ -24,7 +24,9 @@ ones.
 `index.html` is the home page: markup, CSS and JS inline, in that one file.
 `404.html` is a small standalone page in the same style.
 
-Every other page shares one stylesheet, `site.css`, instead of inlining a copy each.
+Every page loads `site.js`, which is only the nav menu behaviour (open, close on
+Escape or an outside click, return focus). Every other page shares one stylesheet,
+`site.css`, instead of inlining a copy each.
 Its tokens are duplicated from `index.html` — change the palette in one and change it
 in the other. A new sub-page links `../site.css` and copies the nav and footer markup
 from an existing one; the footer is the same three columns everywhere, so a new
@@ -46,6 +48,27 @@ surface gets linked from every other page by adding it there.
 Every page works with JavaScript disabled — scripts only add filtering, paging and the
 status strips. Keep it that way; a job board that renders nothing without JS is worse
 than one that cannot filter.
+
+## Discoverability
+
+The footer is not a navigation system. It carries around twenty links, most of them
+jokes that go nowhere on purpose, and a reader cannot tell which of them are pages.
+That is fine for a footer and useless as a way in.
+
+So the nav carries the real pages, and the nav is the thing to update when you add
+one. It has two parts, both repeated in the markup of all six pages:
+
+- Four inline links — Product, Pricing, Careers, Status — which hide below 720px.
+- A **Menu** button, visible at every width, opening a panel that lists every page
+  that exists. On a phone this is the only navigation there is, so it is not
+  optional decoration.
+
+A new page is discoverable when it is in that panel and in the footer of every page.
+Adding it to the footer alone buries it among the jokes. Mark the current page with
+`aria-current="page"` in both the inline links and the panel.
+
+Keep the joke links. `href="#"` in the footer is the bit working as intended; the
+fix for discoverability is a better nav, not fewer jokes.
 
 Two counts are load-bearing and appear in more than one place. The careers site has
 twelve roles, which the home page footer also claims ("Careers (12 open, 0 real)").
