@@ -22,21 +22,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../site.css">
+<script src="../site.js" defer></script>
 </head>
 <body>
 
-<nav class="nav"><div class="wrap">
+<nav class="nav">
+  <div class="wrap">
   <a class="brand" href="../">llm<span>-</span>slop</a>
   <span class="ver mono">v4.1-turbo-preview-final-v2</span>
   <div class="navlinks">
     <a href="../#features">Product</a>
-    <a href="../#bench">Benchmarks</a>
     <a href="../#pricing">Pricing</a>
-    <a href="../#api">Docs</a>
     <a href="../careers/">Careers</a>
+    <a href="../status/">Status</a>
   </div>
-  <a class="btn" href="../status/">Status</a>
-</div></nav>
+  <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+  <div class="menu" id="menu" hidden><div class="wrap">
+    <div class="menu-grid">
+      <div>
+        <h4 class="mono">Product</h4>
+        <a href="../#features">Features</a>
+        <a href="../#bench">Benchmarks</a>
+        <a href="../#pricing">Pricing</a>
+        <a href="../#api">API docs</a>
+      </div>
+      <div>
+        <h4 class="mono">Company</h4>
+        <a href="../careers/">Careers (12 open)</a>
+      </div>
+      <div>
+        <h4 class="mono">Resources</h4>
+        <a href="../feed/">The Feed</a>
+        <a href="../changelog/" aria-current="page">Changelog</a>
+        <a href="../status/">Status</a>
+      </div>
+    </div>
+  </div></div>
+</nav>
 
 <header class="chero"><div class="wrap">
   <p class="eyebrow mono">Changelog</p>
