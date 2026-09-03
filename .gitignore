@@ -1,0 +1,5 @@
+# `npm install playwright` for tools/make-og.mjs creates these. The site has no
+# dependencies and no build step; none of this belongs in the repo.
+node_modules/
+package.json
+package-lock.json
