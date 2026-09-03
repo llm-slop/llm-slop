@@ -1,16 +1,23 @@
 ---
 name: slop-brand
-description: The source of truth for llm-slop — a fictional enterprise company that sells AI-generated content by the word, and the running joke behind everything in this GitHub organization. Covers what the bit is, how llm-slop talks, and what must stay true wherever it shows up: the website, repositories and their READMEs, release notes, social accounts, docs, or any new surface. Use this skill for ANY work under the llm-slop org before writing user-visible text, naming anything, designing anything, or reviewing a PR. The joke lives entirely in tone and is easy to break by accident, so consult it even for changes that look purely technical.
+description: The source of truth for llm-slop — a fictional enterprise software company whose actual product is never established, and the running joke behind everything in this GitHub organization. Covers what the bit is, how llm-slop talks, and what must stay true wherever it shows up: the website, repositories and their READMEs, release notes, social accounts, docs, or any new surface. Use this skill for ANY work under the llm-slop org before writing user-visible text, naming anything, designing anything, or reviewing a PR. The joke lives entirely in tone and is easy to break by accident, so consult it even for changes that look purely technical.
 ---
 
 # llm-slop
 
 ## The concept
 
-llm-slop is a fictional enterprise software company that sells AI-generated content
-by the word. It is a bit — a sustained deadpan parody of the business of slop: a
-company whose product is volume, whose customers want volume, and whose output
-nobody reads.
+llm-slop is a fictional enterprise software company. What it sells is never
+established.
+
+Each surface describes a different product, with total confidence, and no surface
+acknowledges any other. The hero sells a platform. The features sell a writing tool.
+The pricing page bills in four incompatible units. Nobody involved notices, because
+noticing would require someone to have read it.
+
+It is a sustained deadpan parody of corporate language that has come unmoored from
+meaning — a company that has a category, a roadmap, a Series B and a benchmark, and
+no describable product underneath any of it.
 
 The company is the artifact. It is not any one thing it makes. Right now it has a
 GitHub organization and a marketing site, and it can plausibly grow social accounts,
@@ -39,6 +46,28 @@ audience supplies the horror; llm-slop supplies only the brag.
 ruining the internet" is the bit stepping outside itself to agree with the audience,
 and it dies on contact. Stay inside the fiction. Let people arrive at the point
 themselves — they will, faster than you can tell them.
+
+## Incoherence is the joke, and it has rules
+
+"It doesn't have to make sense" is the premise, not a licence for noise. Random is
+not funny; confidently contradictory is.
+
+**Each surface is internally coherent.** A section reads as competent copy for
+*something*. The reader should be able to finish it and only then realise they still
+cannot say what llm-slop does.
+
+**The contradiction lives between surfaces, never inside one.** Two sections
+describing two unrelated products is the joke. One sentence describing two things is
+a typo.
+
+**Nobody ever notices.** No character, caption or footnote acknowledges the
+mismatch. The moment the page winks — "wait, what do we even do?" — it becomes a
+joke about a confused company instead of being one.
+
+**Keep the specifics.** Contradiction only reads as contradiction against concrete
+detail. "A platform for modern teams" contradicts nothing because it says nothing;
+"per-seat pricing" against "per-outcome pricing" against "10,000 words a month" is
+three real claims that cannot all be true.
 
 ## The rule that protects everything else
 
@@ -128,9 +157,23 @@ instructions, commit messages, PR descriptions, code comments, issue templates,
 security and licence files. These are written plainly and accurately. A joke deploy
 instruction is not a joke, it is a broken repository.
 
-A repository README can open in character and then get on with real instructions.
-When the two are adjacent, make the seam obvious — a heading is enough. Never let
-the bit make a factual claim a contributor might act on.
+**Specimen** — a surface can be the product's output rather than the company's
+speech, as long as it is framed as output. A company that sells generated content
+plausibly generates its own artifacts, and that is funnier than describing the
+product in house voice.
+
+`README.md` in the site repo is deliberately specimen: bloated, emoji-bulleted,
+delve-laden, structurally impressive and informationally empty, under a masthead
+saying llm-slop generated it. **Do not "fix" it.** Flattening it back into ordinary
+project documentation reads like a bug fix and removes the joke — if you find
+yourself tidying it, you have misread the file.
+
+The honesty requirement does not vanish when a surface becomes specimen; it moves.
+The real setup, deploy and contribution notes for the site live in
+`references/website.md`, and the README's footer points there. Whenever you make
+something specimen, check that whatever it displaced still exists somewhere a
+contributor will find it, and that the specimen makes no factual claim anyone could
+act on — vague and useless is safe, confidently wrong is not.
 
 ## What stays true, no matter who asks
 
