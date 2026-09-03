@@ -156,7 +156,9 @@ the site.
   `twitter:image` are hardcoded in `index.html`. Change one, change all four. The
   README documents the one-command swap for when a custom domain is attached.
 - **Deploys are branch-based.** Pages serves `main` from the repo root. There is no
-  workflow and no build step; `.nojekyll` keeps the files unprocessed. Pushing to
+  build step, and no workflow deploys anything — the one workflow in
+  `.github/workflows/` only reports on pull requests. `.nojekyll` keeps the files
+  unprocessed. Pushing to
   `main` republishes. Enable it once under **Settings → Pages → Build and
   deployment → Deploy from a branch**, branch `main`, folder `/ (root)`.
 

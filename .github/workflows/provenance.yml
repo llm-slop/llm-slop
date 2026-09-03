@@ -1,0 +1,26 @@
+# Reports, on every pull request, how each commit declares its authorship.
+# It deploys nothing and it does not gate a merge.
+name: Provenance
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Read the description
+        env:
+          BODY: ${{ github.event.pull_request.body }}
+        run: printf '%s' "$BODY" > "$RUNNER_TEMP/pr-body.md"
+      - name: Report
+        env:
+          BASE: ${{ github.base_ref }}
+        run: node tools/provenance.mjs "origin/$BASE..HEAD" --summary --pr-body "$RUNNER_TEMP/pr-body.md"
