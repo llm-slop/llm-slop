@@ -47,6 +47,12 @@ surface gets linked from every other page by adding it there.
 - `trust/index.html` — the trust centre: certifications, subprocessors, controls,
   vendor assessment, disclosure. Entirely static; the only script it loads is the
   shared nav.
+- `deck/index.html` — the Series B deck. Fourteen full-height slides in ordinary
+  markup, snapped with `scroll-snap-type` on `<html class="deckdoc">`. Its inline
+  script only adds the arrow keys, the two pager buttons and the counter, all of
+  which live in `.deck-ctl`, which stays `hidden` until the script removes it. The
+  slide number and the Confidential stamp are written into each `.sl-top`, so the
+  deck reads correctly with no JavaScript at all.
 
 Every page works with JavaScript disabled — scripts only add filtering, paging and the
 status strips. Keep it that way; a job board that renders nothing without JS is worse
@@ -59,7 +65,7 @@ jokes that go nowhere on purpose, and a reader cannot tell which of them are pag
 That is fine for a footer and useless as a way in.
 
 So the nav carries the real pages, and the nav is the thing to update when you add
-one. It has two parts, both repeated in the markup of all seven pages:
+one. It has two parts, both repeated in the markup of all eight pages:
 
 - Four inline links — Product, Pricing, Careers, Status — which hide below 720px.
 - A **Menu** button, visible at every width, opening a panel that lists every page
@@ -74,9 +80,11 @@ Keep the joke links. `href="#"` in the footer is the bit working as intended; th
 fix for discoverability is a better nav, not fewer jokes.
 
 Two counts are load-bearing and appear in more than one place. The careers role
-count is repeated in page copy, navigation and footers across the site.
+count is repeated in page copy, navigation and footers across the site, and again
+on the deck's team and ask slides.
 The changelog totals 604 releases: thirteen listed individually plus the grouped
-"591 releases" entry at the bottom. Changing either means changing it everywhere.
+"591 releases" entry at the bottom, and the deck quotes both numbers. Changing
+either means changing it everywhere.
 
 Adding or removing a role means editing two places: the listing markup in
 `careers/index.html` and the matching `ROLES` entry in `careers/job.html`. The
@@ -97,6 +105,12 @@ board, hiring process, employee quotes, offices, footer.
 
 The trust centre runs: nav, hero, stat strip, certifications, subprocessors, controls,
 vendor assessment, disclosure, footer.
+
+The deck runs one idea per slide, in the order a deck runs: title, problem, why now,
+category, product, market, traction, benchmark, competition, business model, unit
+economics, go to market, team, the ask. Renumbering means editing the `.sl-top` of
+every slide after it and the `aria-label` on the section, since both are written out
+rather than counted.
 
 The sub-pages cross-reference each other's details on purpose — Kyle is a job listing,
 a status component, an incident, a subprocessor's responsibility and the disclosure
@@ -129,10 +143,11 @@ A third is `feed/index.html`, which is the whole point of that page: the feature
 and the generated titles are product output, framed as output by the bar above them
 and the line beneath. The rest of that page — headings, lede, pager — is house voice.
 
-The careers, status, changelog and trust pages hold no specimen. Job descriptions are
+The careers, status, changelog, trust and deck pages hold no specimen. Job descriptions are
 house voice, each written as competent copy by a hiring manager who has never spoken to
-the other eleven; incident updates, release notes and the trust centre are the company
-writing about itself.
+the other eleven; incident updates, release notes, the trust centre and the deck are the
+company writing about itself. The deck sells infrastructure, which is not what the home
+page sells; keep each surface internally coherent and leave the mismatch alone.
 
 Both are framed as product output. Everything else on the page is house voice.
 
