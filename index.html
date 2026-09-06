@@ -96,7 +96,9 @@ p{margin:0}
 /* hero */
 .hero{padding:96px 0 20px;text-align:center}
 .pill{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;color:var(--dim);
-  border:1px solid var(--line);background:var(--panel);padding:6px 14px;border-radius:99px;margin-bottom:34px}
+  border:1px solid var(--line);background:var(--panel);padding:6px 14px;border-radius:99px;
+  margin-bottom:34px;text-decoration:none}
+a.pill:hover{color:var(--text);border-color:var(--slop-dim)}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--slop);box-shadow:0 0 10px var(--slop)}
 h1{font-size:clamp(44px,8.2vw,86px);letter-spacing:-.045em}
 .sub{max-width:600px;margin:26px auto 0;color:var(--dim);font-size:18.5px}
@@ -282,6 +284,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
         <h4 class="mono">Company</h4>
         <a href="careers/">Careers (16 open)</a>
         <a href="trust/">Trust centre</a>
+        <a href="deck/">Series B deck</a>
       </div>
       <div>
         <h4 class="mono">Resources</h4>
@@ -294,7 +297,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
 </nav>
 
 <header class="hero"><div class="wrap">
-  <div class="pill"><span class="dot"></span><span class="mono">Series B closed. We are not saying how much.</span></div>
+  <a class="pill" href="deck/"><span class="dot"></span><span class="mono">Series B closed. We are not saying how much.</span></a>
   <h1>Say nothing,<br>at scale.</h1>
   <p class="sub">The AI-native platform layer for modern teams. llm-slop sits underneath your existing stack, above your existing stack, and in several places alongside it, delivering measurable outcomes across every function that has a budget.</p>
   <div class="ctas">
@@ -505,7 +508,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
     </div>
     <div>
       <h4>Company</h4>
-      <a href="careers/">Careers (16 open, 0 real)</a><a href="trust/">Trust centre</a><a href="#">About</a><a href="#">Manifesto</a><a href="#">Manifesto v2</a>
+      <a href="careers/">Careers (16 open, 0 real)</a><a href="trust/">Trust centre</a><a href="deck/">Series B deck</a><a href="#">About</a><a href="#">Manifesto</a><a href="#">Manifesto v2</a>
     </div>
     <div>
       <h4>Resources</h4>
