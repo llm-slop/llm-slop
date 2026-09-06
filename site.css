@@ -253,6 +253,63 @@ footer{border-top:1px solid var(--line);padding:64px 0 110px;font-size:13.5px;co
 .proc-l{font-size:12px;color:var(--dimmer);margin-top:5px}
 .proc-p{color:var(--dim);font-size:15.5px}
 
+/* deck */
+html.deckdoc{scroll-snap-type:y proximity}
+.slide{position:relative;display:flex;align-items:center;
+  min-height:calc(100vh - 62px);min-height:calc(100svh - 62px);
+  padding:96px 0 72px;border-bottom:1px solid var(--line);
+  scroll-snap-align:start;scroll-margin-top:62px}
+.slide > .wrap{width:100%}
+/* slide chrome sits at the top of the slide; the content stays centred */
+.sl-top{position:absolute;top:30px;left:0;right:0;max-width:var(--maxw);margin:0 auto;
+  padding:0 24px;display:flex;justify-content:space-between;gap:16px;
+  font-size:11.5px;color:var(--dimmer);z-index:1}
+.sl-h1{font-size:clamp(40px,7vw,72px);letter-spacing:-.045em;max-width:14ch}
+.slide h2{font-size:clamp(30px,5.4vw,50px);letter-spacing:-.04em;max-width:15ch}
+.slide .lede{font-size:18px;max-width:640px}
+.slide .lede + .lede{margin-top:16px}
+.slide .stats{margin-top:44px}
+.slide .card .role{font-size:11.5px;color:var(--dimmer);margin:-4px 0 11px}
+.sl-end{margin-top:34px}
+
+.bch{display:grid;gap:10px;max-width:720px;margin-top:38px}
+.bch-row{display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:center}
+.bch-l{font-size:14.5px;color:var(--dim)}
+.bch-bar{display:block;min-width:56px;border:1px solid var(--line);border-radius:6px;
+  background:var(--panel2);color:var(--dim);padding:7px 10px;font-size:12.5px;white-space:nowrap}
+.bch-bar.win{background:var(--slop);border-color:var(--slop);color:#0b1300;font-weight:500}
+
+.quad{max-width:620px;margin-top:34px}
+.qy,.qx{display:block;font-size:11.5px;color:var(--dimmer)}
+.qy{margin-bottom:9px}
+.qx{margin-top:9px;text-align:right}
+.qbox{position:relative;aspect-ratio:16/10;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--panel)}
+.qbox::before,.qbox::after{content:"";position:absolute;background:#1c1a27}
+.qbox::before{left:50%;top:0;bottom:0;width:1px}
+.qbox::after{top:50%;left:0;right:0;height:1px}
+/* points are anchored by their dot, so a label never runs off the box */
+.pt{position:absolute;transform:translate(-3px,50%);white-space:nowrap;
+  font-size:12px;color:var(--dim)}
+.pt::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--dimmer);margin-right:7px;vertical-align:middle}
+.pt.us{color:var(--slop);font-weight:700;transform:translate(-92%,50%)}
+.pt.us::before{background:var(--slop);box-shadow:0 0 10px var(--slop)}
+
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:40px}
+.fig{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:22px 20px}
+.fig b{display:block;font-size:30px;font-weight:700;letter-spacing:-.04em;color:var(--slop);
+  font-variant-numeric:tabular-nums;line-height:1}
+.fig span{display:block;margin-top:10px;font-size:12.5px}
+.fig p{margin-top:7px;color:var(--dim);font-size:14px;line-height:1.55}
+
+.deck-ctl{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:8px;
+  border:1px solid var(--line);border-radius:99px;padding:6px 10px;
+  background:rgba(16,15,25,.9);backdrop-filter:blur(10px)}
+.deck-ctl[hidden]{display:none}
+.deck-ctl .btn{padding:5px 12px;border-radius:99px}
+.deck-ctl span{min-width:54px;text-align:center;font-size:11.5px;color:var(--dim)}
+
 @media (max-width:900px){
   .ver{display:none}
   .jbody{grid-template-columns:1fr;gap:36px}
@@ -276,6 +333,16 @@ footer{border-top:1px solid var(--line);padding:64px 0 110px;font-size:13.5px;co
   .arrow{display:none}
   .find{margin-left:0;width:100%}
   .find input{width:100%}
+  .bch-row{grid-template-columns:110px 1fr;gap:12px}
+  .pt{font-size:11px}
+  .deck-ctl{right:12px;bottom:12px}
+  /* room for the fixed pager, and less air around tall slides */
+  .slide{padding:76px 0 86px}
+  .sl-top{top:24px}
+  .slide .grid{gap:10px;margin-top:32px}
+  .slide .card{padding:19px 18px}
+  .slide .figs{gap:10px;margin-top:32px}
+  .slide .stats{margin-top:34px;padding:26px 0}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
