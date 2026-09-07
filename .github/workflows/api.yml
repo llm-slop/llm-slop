@@ -1,0 +1,24 @@
+# Runs the API's test suite on every pull request that touches it. It deploys
+# nothing; deploys happen from the host, see api/README.md.
+name: API
+
+on:
+  pull_request:
+    paths: ['api/**', '.github/workflows/api.yml']
+  push:
+    branches: [main]
+    paths: ['api/**', '.github/workflows/api.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test
+        run: node --test api/test.mjs

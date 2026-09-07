@@ -20,10 +20,10 @@ const ORIGIN = 'https://llm-slop.com';
 const problems = [];
 const fail = (file, message) => problems.push({ file, message });
 
-/* Every .html in the repo except tools/, which is not part of the site. */
+/* Every .html in the repo except tools/ and api/, which are not part of the site. */
 function pages(dir = root, out = []) {
   for (const entry of readdirSync(dir)) {
-    if (entry === '.git' || entry === 'node_modules' || entry === 'tools') continue;
+    if (entry === '.git' || entry === 'node_modules' || entry === 'tools' || entry === 'api') continue;
     const full = join(dir, entry);
     if (statSync(full).isDirectory()) pages(full, out);
     else if (entry.endsWith('.html')) out.push(full);
