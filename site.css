@@ -81,6 +81,8 @@ section{padding:88px 0;position:relative;z-index:1}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px;margin-top:44px}
 .card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:26px 24px}
 .card h3{font-size:18.5px;margin-bottom:11px}
+.card h3 a{color:var(--slop);text-decoration:none}
+.card h3 a:hover{text-decoration:underline}
 .card p{color:var(--dim);font-size:15px;line-height:1.6}
 
 /* board */
@@ -253,6 +255,19 @@ footer{border-top:1px solid var(--line);padding:64px 0 110px;font-size:13.5px;co
 .proc-l{font-size:12px;color:var(--dimmer);margin-top:5px}
 .proc-p{color:var(--dim);font-size:15.5px}
 
+/* glossary + faq */
+.gloss{margin-top:40px;border-top:1px solid var(--line)}
+.gterm{display:grid;grid-template-columns:210px 1fr;gap:32px;padding:24px 0;
+  border-bottom:1px solid var(--line);margin:0}
+.gname{font-size:15.5px;font-weight:500}
+.gpos{display:block;font-size:12px;color:var(--dimmer);margin-top:5px;font-weight:400}
+.gdef{color:var(--dim);font-size:15.5px;margin:0}
+.gdef a{color:var(--dim)}
+.qa{margin-top:40px;border-top:1px solid var(--line)}
+.qa-i{padding:26px 0;border-bottom:1px solid var(--line)}
+.qa-i h3{font-size:19px;letter-spacing:-.02em}
+.qa-i p{margin-top:12px;color:var(--dim);font-size:15.5px;max-width:66ch}
+
 /* deck */
 html.deckdoc{scroll-snap-type:y proximity}
 .slide{position:relative;display:flex;align-items:center;
@@ -322,6 +337,7 @@ html.deckdoc{scroll-snap-type:y proximity}
   .strip-x .d30{display:inline}
   .navlinks{display:none}
   .rel{grid-template-columns:1fr;gap:12px}
+  .gterm{grid-template-columns:1fr;gap:10px}
   .proc-row{grid-template-columns:1fr;gap:10px}
   .upd{grid-template-columns:1fr;gap:2px}
   .comps{padding:8px 18px 18px}

@@ -44,6 +44,13 @@ surface gets linked from every other page by adding it there.
   `data-desc="1"`, which marks a release whose notes say something.
 - `feed/index.html` — the blog. Page one is static markup; the JS regenerates the list
   procedurally on Next, so the page still shows ten posts without it.
+- `glossary/index.html` — the glossary. Eighteen terms in three `<dl class="gloss">`
+  lists, entirely static, no script beyond the shared nav. It is the page that
+  carries the phrase "LLM slop" as body copy, and its `DefinedTerm` structured
+  data mirrors the visible definitions — change one and change the other.
+- `faq/index.html` — the FAQ. Thirteen questions in three sections, static, and
+  its `FAQPage` structured data repeats each answer verbatim. Google discards the
+  markup if the two disagree, so edit them together.
 - `trust/index.html` — the trust centre: certifications, subprocessors, controls,
   vendor assessment, disclosure. Entirely static; the only script it loads is the
   shared nav.
@@ -65,7 +72,7 @@ jokes that go nowhere on purpose, and a reader cannot tell which of them are pag
 That is fine for a footer and useless as a way in.
 
 So the nav carries the real pages, and the nav is the thing to update when you add
-one. It has two parts, both repeated in the markup of all eight pages:
+one. It has two parts, both repeated in the markup of all ten pages:
 
 - Four inline links — Product, Pricing, Careers, Status — which hide below 720px.
 - A **Menu** button, visible at every width, opening a panel that lists every page
@@ -98,7 +105,7 @@ along with the `package.json` npm creates for it — that is a one-off on your
 machine, not a project dependency.)
 
 Sections run in reading order: nav, hero, logo wall, benchmarks, features,
-how-it-works, API, testimonials, pricing, counter, footer.
+how-it-works, API, testimonials, pricing, resources, counter, footer.
 
 The careers landing page runs: nav, hero, stat strip, principles, benefits, job
 board, hiring process, employee quotes, offices, footer.
@@ -142,8 +149,10 @@ Two places hold deliberate slop, and only these two:
 A third is `feed/index.html`, which is the whole point of that page: the featured post
 and the generated titles are product output, framed as output by the bar above them
 and the line beneath. The rest of that page — headings, lede, pager — is house voice.
+`feed/rss.xml` is the same specimen in a feed reader: the item descriptions are
+product output, framed by the channel description above them.
 
-The careers, status, changelog, trust and deck pages hold no specimen. Job descriptions are
+The careers, status, changelog, trust, glossary, FAQ and deck pages hold no specimen. Job descriptions are
 house voice, each written as competent copy by a hiring manager who has never spoken to
 the other eleven; incident updates, release notes, the trust centre and the deck are the
 company writing about itself. The deck sells infrastructure, which is not what the home
@@ -173,6 +182,40 @@ tagline changes — the card is what people see when the link is shared, so a st
 tagline there is the most visible error the site can have. `tools/` is not part of
 the site.
 
+## Search
+
+The site is meant to be found for the term it is named after, so the
+machine-readable half is maintained as carefully as the visible half. `node
+tools/seo-check.mjs` checks all of it and runs on every pull request; run it
+before you push.
+
+What exists, and what a new page owes it:
+
+- `sitemap.xml` lists every indexable URL, with a `lastmod`. A new page is added
+  here or it does not exist as far as a crawler is concerned. `404.html` and
+  `careers/job.html` are `noindex` and stay out.
+- `robots.txt` allows everything and names the sitemap. The named AI crawlers
+  are listed individually and allowed on purpose — that is the joke and the
+  policy.
+- Every indexable page carries, in this order: `<title>` under 65 characters, a
+  meta description under 160, the `robots` directives (`max-snippet:-1`,
+  `max-image-preview:large`), `canonical`, the four absolute URLs, and one
+  `application/ld+json` block. Copy the head of an existing sub-page.
+- Structured data is a `@graph`. The home page holds `Organization`, `WebSite`,
+  `WebPage`, `SoftwareApplication` and the site navigation list; every sub-page
+  holds a page type and a `BreadcrumbList`. `@id`s point back at
+  `https://llm-slop.com/#organization`, so keep that node on the home page.
+- No `JobPosting`, `Review`, `AggregateRating` or `Offer` markup. Those feed
+  Google surfaces that real people act on — a job board, a star rating, a price —
+  and an invented company filling them stops being a parody a reader opted into.
+  Every other schema type describes the page, which is honest.
+- `llms.txt` is the same index for models, in house voice. `manifest.webmanifest`
+  and `icon.svg` cover the installed-app metadata. Add a new page to `llms.txt`
+  when you add it to the sitemap.
+- The glossary and the FAQ carry their visible copy twice, once as markup. Google
+  drops structured data that disagrees with the page, so edit both halves in the
+  same change.
+
 ## URLs and deploys
 
 - **The four absolute URLs move together.** `canonical`, `og:url`, `og:image` and
@@ -182,8 +225,9 @@ the site.
   `og:image` and `twitter:image` stay on the root `og.png`. `careers/job.html` and
   `404.html` are `noindex` and carry none of them.
 - **Deploys are branch-based.** Pages serves `main` from the repo root. There is no
-  build step, and no workflow deploys anything — the one workflow in
-  `.github/workflows/` only reports on pull requests. `.nojekyll` keeps the files
+  build step, and no workflow deploys anything — the two workflows in
+  `.github/workflows/` report authorship and check the search surfaces, and
+  neither publishes. `.nojekyll` keeps the files
   unprocessed. Pushing to
   `main` republishes. Enable it once under **Settings → Pages → Build and
   deployment → Deploy from a branch**, branch `main`, folder `/ (root)`.
