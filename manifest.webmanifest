@@ -1,0 +1,22 @@
+{
+  "id": "/",
+  "name": "llm-slop",
+  "short_name": "llm-slop",
+  "description": "Enterprise-grade content generation. Infinite words. Zero ideas.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#08070d",
+  "theme_color": "#08070d",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}

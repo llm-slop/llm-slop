@@ -1,0 +1,17 @@
+/* TEAM */
+
+Written by: a human
+Site: https://llm-slop.com/
+Note: This entire site was written by a human, which we consider a
+      failure of process.
+
+/* THANKS */
+
+The corpus.
+
+/* SITE */
+
+Language: English
+Components: none
+Build step: none
+Last updated: 2026-09-07
