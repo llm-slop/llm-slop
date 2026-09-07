@@ -14,6 +14,10 @@ python3 -m http.server 8000
 - **Search surfaces are checked in CI.** `node tools/seo-check.mjs` verifies
   sitemap coverage, canonicals, structured data and internal links. Run it before
   you push; a new page has to be added to `sitemap.xml` and `llms.txt`.
+- **The API is real and lives in `api/`.** `node api/serve.mjs` runs it,
+  `node --test api/test.mjs` checks it, and CI runs the same suite. It is not
+  part of the site — Pages cannot execute it — and its response has to match the
+  sample in the `#api` section of `index.html`. `api/README.md` has the rest.
 - **`README.md` is deliberately bad.** It is a specimen of the product's output,
   not project documentation. Do not tidy it.
 - **Deploys are branch-based.** Pages serves `main` from the repo root; pushing

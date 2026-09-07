@@ -1,0 +1,8 @@
+# Cloudflare Workers deploy config. Only wrangler reads this file; the other
+# hosts take api/handler.mjs directly. See api/README.md.
+name = "llm-slop-api"
+main = "handler.mjs"
+compatibility_date = "2026-09-07"
+
+# Set after the zone is on Cloudflare, or attach the domain in the dashboard:
+# routes = [{ pattern = "api.llm-slop.com", custom_domain = true }]

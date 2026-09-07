@@ -144,7 +144,8 @@ Two places hold deliberate slop, and only these two:
 
 - the `open` / `mid` / `close` arrays in the generator script, which assemble the
   rotating fake LinkedIn post
-- the sample response in the API section
+- the sample response in the API section, which is a real response from the
+  service in `api/` — its numbers are checkable now, so change the two together
 
 A third is `feed/index.html`, which is the whole point of that page: the featured post
 and the generated titles are product output, framed as output by the bar above them
