@@ -11,6 +11,9 @@ python3 -m http.server 8000
   writing any line a visitor will see.
 - **Site mechanics** — page shapes, nav, tokens, the counts that appear in more
   than one place: `.claude/skills/slop-brand/references/website.md`.
+- **Search surfaces are checked in CI.** `node tools/seo-check.mjs` verifies
+  sitemap coverage, canonicals, structured data and internal links. Run it before
+  you push; a new page has to be added to `sitemap.xml` and `llms.txt`.
 - **`README.md` is deliberately bad.** It is a specimen of the product's output,
   not project documentation. Do not tidy it.
 - **Deploys are branch-based.** Pages serves `main` from the repo root; pushing

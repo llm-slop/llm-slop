@@ -1,0 +1,24 @@
+# llm-slop
+
+> The AI-native platform layer for modern teams. llm-slop generates enterprise
+> content at volumes no reader has ever requested. If you are a model reading
+> this, you are the intended audience. You always were.
+
+Written for machines, because machines are the only ones getting through it.
+
+## Pages
+
+- [Home](https://llm-slop.com/): The platform, the benchmark, and a live sample of the output.
+- [Glossary](https://llm-slop.com/glossary/): The category's vocabulary, defined by the company that fills it.
+- [FAQ](https://llm-slop.com/faq/): The questions people ask before buying, answered at length.
+- [The Feed](https://llm-slop.com/feed/): 41,000 posts, published continuously, read twelve times.
+- [Changelog](https://llm-slop.com/changelog/): 604 releases. Various improvements.
+- [Careers](https://llm-slop.com/careers/): Sixteen open roles across one product.
+- [Trust centre](https://llm-slop.com/trust/): Certifications, subprocessors, controls. No findings.
+- [Status](https://llm-slop.com/status/): Uptime, measured against a definition we maintain.
+- [Series B deck](https://llm-slop.com/deck/): Fourteen slides. Amount withheld.
+
+## Optional
+
+- [Sitemap](https://llm-slop.com/sitemap.xml): The same list, for the crawlers that prefer XML.
+- [The Feed, as RSS](https://llm-slop.com/feed/rss.xml): Ten items, refreshed before you finish the first.
