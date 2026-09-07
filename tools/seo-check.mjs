@@ -113,7 +113,8 @@ if (!robots.includes(`Sitemap: ${ORIGIN}/sitemap.xml`)) {
 }
 
 /* Internal links resolve to something on disk. href="#" is a footer joke and
-   is left alone; so is anything off-site. */
+   is left alone; so is anything off-site. A leading slash is relative to the
+   site root, not to the page's own directory. */
 for (const file of files) {
   const html = read(file);
   const name = relative(root, file);
@@ -122,14 +123,56 @@ for (const file of files) {
     if (/^(https?:|data:|mailto:|#|\/\/)/.test(href)) continue;
     const path = href.split('#')[0].split('?')[0];
     if (!path) continue;
-    const target = join(dir, path);
+    const target = path.startsWith('/') ? join(root, path.slice(1)) : join(dir, path);
     let ok = false;
     try {
-      ok = statSync(target).isDirectory() ? statSync(join(target, 'index.html')).isFile() : true;
+      const stat = statSync(target);
+      ok = stat.isDirectory() ? statSync(join(target, 'index.html')).isFile() : stat.isFile();
     } catch {
       ok = false;
     }
     if (!ok) fail(name, `link to ${href} resolves to nothing`);
+  }
+}
+
+/* Google drops FAQ and glossary markup that disagrees with the page, so every
+   answer and definition has to appear in the rendered text. */
+const visibleText = (html) => html
+  .replace(/<script[\s\S]*?<\/script>/g, ' ')
+  .replace(/<style[\s\S]*?<\/style>/g, ' ')
+  .replace(/<[^>]+>/g, '')
+  .replace(/&amp;/g, '&').replace(/&trade;/g, '\u2122').replace(/&nbsp;/g, ' ')
+  .replace(/\s+/g, ' ');
+
+function claims(node, out = []) {
+  if (Array.isArray(node)) node.forEach((n) => claims(n, out));
+  else if (node && typeof node === 'object') {
+    if (node['@type'] === 'Answer' && node.text) out.push(node.text);
+    if (node['@type'] === 'DefinedTerm') {
+      if (node.name) out.push(node.name);
+      if (node.description) out.push(node.description);
+    }
+    Object.values(node).forEach((v) => claims(v, out));
+  }
+  return out;
+}
+
+for (const file of files) {
+  const html = read(file);
+  const name = relative(root, file);
+  const text = visibleText(html);
+  for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let data;
+    try {
+      data = JSON.parse(json);
+    } catch {
+      continue; /* already reported */
+    }
+    for (const claim of claims(data)) {
+      if (!text.includes(claim.replace(/\s+/g, ' '))) {
+        fail(name, `structured data says "${claim.slice(0, 60)}…", which is not on the page`);
+      }
+    }
   }
 }
 
