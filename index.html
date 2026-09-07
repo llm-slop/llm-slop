@@ -6,11 +6,15 @@
 <title>llm-slop — Say nothing, at scale.</title>
 <meta name="description" content="Enterprise-grade content generation. Infinite words. Zero ideas. SOC 2 Type II (self-attested).">
 <meta name="theme-color" content="#08070d">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://llm-slop.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308070d'/%3E%3Crect x='11' y='29' width='42' height='6' rx='3' fill='%23c6ff3f'/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="The Feed — llm-slop" href="feed/rss.xml">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="llm-slop">
+<meta property="og:locale" content="en_GB">
 <meta property="og:url" content="https://llm-slop.com/">
 <meta property="og:title" content="llm-slop — Say nothing, at scale.">
 <meta property="og:description" content="Thought leadership, README files, and changelog entries that are functionally indistinguishable from content. Infinite words. Zero ideas.">
@@ -22,9 +26,11 @@
 <meta name="twitter:title" content="llm-slop — Say nothing, at scale.">
 <meta name="twitter:description" content="Thought leadership, README files, and changelog entries that are functionally indistinguishable from content. Infinite words. Zero ideas.">
 <meta name="twitter:image" content="https://llm-slop.com/og.png">
+<meta name="twitter:image:alt" content="llm-slop — Say nothing, at scale.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -154,6 +160,8 @@ section{padding:96px 0;position:relative;z-index:1}
 .card{border:1px solid var(--line);border-radius:var(--radius);
   background:var(--panel);padding:26px 24px}
 .card h3{font-size:18.5px;margin-bottom:11px}
+.card h3 a{color:var(--slop);text-decoration:none}
+.card h3 a:hover{text-decoration:underline}
 .card p{color:var(--dim);font-size:15px;line-height:1.6}
 
 /* steps */
@@ -255,6 +263,106 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
 }
 </style>
 <script src="site.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://llm-slop.com/#organization",
+      "name": "llm-slop",
+      "legalName": "llm-slop, inc.",
+      "alternateName": ["llm slop", "LLM slop"],
+      "url": "https://llm-slop.com/",
+      "slogan": "Say nothing, at scale.",
+      "description": "llm-slop is the AI-native platform layer for modern teams. Enterprise-grade content generation: infinite words, zero ideas.",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://llm-slop.com/#logo",
+        "url": "https://llm-slop.com/icon.svg",
+        "caption": "llm-slop"
+      },
+      "image": { "@id": "https://llm-slop.com/#logo" },
+      "sameAs": ["https://github.com/llm-slop"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Denver",
+        "addressRegion": "CO",
+        "addressCountry": "US"
+      },
+      "knowsAbout": [
+        "LLM slop",
+        "AI slop",
+        "Content generation",
+        "Thought leadership",
+        "Answer engine optimisation"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://llm-slop.com/#website",
+      "url": "https://llm-slop.com/",
+      "name": "llm-slop",
+      "description": "Enterprise-grade content generation. Infinite words. Zero ideas.",
+      "publisher": { "@id": "https://llm-slop.com/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://llm-slop.com/#webpage",
+      "url": "https://llm-slop.com/",
+      "name": "llm-slop — Say nothing, at scale.",
+      "description": "Enterprise-grade content generation. Infinite words. Zero ideas. SOC 2 Type II (self-attested).",
+      "isPartOf": { "@id": "https://llm-slop.com/#website" },
+      "about": { "@id": "https://llm-slop.com/#organization" },
+      "inLanguage": "en",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://llm-slop.com/og.png",
+        "width": 1200,
+        "height": 630,
+        "caption": "llm-slop — Say nothing, at scale."
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://llm-slop.com/#platform",
+      "name": "llm-slop",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Content generation",
+      "operatingSystem": "Web",
+      "softwareVersion": "4.1-turbo-preview-final-v2",
+      "url": "https://llm-slop.com/",
+      "description": "The AI-native platform layer for modern teams. Generates thought leadership, README files and changelog entries that are functionally indistinguishable from content.",
+      "publisher": { "@id": "https://llm-slop.com/#organization" },
+      "featureList": [
+        "Dashformer™ em dash engine",
+        "Delve Mode vocabulary layer",
+        "Not X, But Y sentence construction",
+        "Emoji bullet compliance",
+        "Confidence guarantee",
+        "Human in the loop"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://llm-slop.com/#pages",
+      "name": "llm-slop",
+      "itemListElement": [
+        { "@type": "SiteNavigationElement", "position": 1, "name": "Glossary", "description": "LLM slop, defined, plus seventeen other terms.", "url": "https://llm-slop.com/glossary/" },
+        { "@type": "SiteNavigationElement", "position": 2, "name": "FAQ", "description": "Thirteen questions about LLM slop and the platform.", "url": "https://llm-slop.com/faq/" },
+        { "@type": "SiteNavigationElement", "position": 3, "name": "The Feed", "description": "41,000 generated posts.", "url": "https://llm-slop.com/feed/" },
+        { "@type": "SiteNavigationElement", "position": 4, "name": "Changelog", "description": "604 releases.", "url": "https://llm-slop.com/changelog/" },
+        { "@type": "SiteNavigationElement", "position": 5, "name": "Careers", "description": "Sixteen open roles.", "url": "https://llm-slop.com/careers/" },
+        { "@type": "SiteNavigationElement", "position": 6, "name": "Trust centre", "description": "Certifications, subprocessors and controls.", "url": "https://llm-slop.com/trust/" },
+        { "@type": "SiteNavigationElement", "position": 7, "name": "Status", "description": "Component uptime over ninety days.", "url": "https://llm-slop.com/status/" },
+        { "@type": "SiteNavigationElement", "position": 8, "name": "Series B deck", "description": "Fourteen slides, published in full.", "url": "https://llm-slop.com/deck/" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -288,6 +396,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
       </div>
       <div>
         <h4 class="mono">Resources</h4>
+        <a href="glossary/">Glossary</a>
+        <a href="faq/">FAQ</a>
         <a href="feed/">The Feed</a>
         <a href="changelog/">Changelog</a>
         <a href="status/">Status</a>
@@ -485,6 +595,28 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
   </div>
 </div></section>
 
+
+<section id="resources"><div class="wrap">
+  <p class="eyebrow mono">Resources</p>
+  <h2>The category is called<br>LLM slop. We document it.</h2>
+  <p class="lede">Three pages for the people who arrive here trying to work out what the term means, and stay to find out what it costs.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3><a href="glossary/">Glossary</a></h3>
+      <p>Eighteen terms defined in one line each, beginning with the one in our name. Maintained by us, cited by us.</p>
+    </div>
+    <div class="card">
+      <h3><a href="faq/">FAQ</a></h3>
+      <p>Thirteen questions from the forty minute call, answered in advance. The call is still required.</p>
+    </div>
+    <div class="card">
+      <h3><a href="feed/">The Feed</a></h3>
+      <p>41,000 worked examples, published continuously. Twelve have been read end to end.</p>
+    </div>
+  </div>
+</div></section>
+
 <div class="counter"><div class="wrap">
   <div class="big" id="count">1,284,993,201</div>
   <p class="mono">words generated today, none of them read</p>
@@ -512,7 +644,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
     </div>
     <div>
       <h4>Resources</h4>
-      <a href="feed/">The Feed (41,000 posts)</a><a href="changelog/">Changelog</a><a href="status/">Status</a><a href="#">Whitepaper</a><a href="#">The State of Slop 2026</a>
+      <a href="glossary/">Glossary</a><a href="faq/">FAQ</a><a href="feed/">The Feed (41,000 posts)</a><a href="changelog/">Changelog</a><a href="status/">Status</a><a href="#">Whitepaper</a><a href="#">The State of Slop 2026</a>
     </div>
     <div>
       <h4>Legal</h4>

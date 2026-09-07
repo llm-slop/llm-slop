@@ -1,0 +1,19 @@
+# Checks the machine-readable half of the site on every pull request: sitemap
+# coverage, canonicals, structured data, internal links. It deploys nothing.
+name: SEO
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check
+        run: node tools/seo-check.mjs --summary
