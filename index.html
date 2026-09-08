@@ -199,6 +199,43 @@ pre{margin:0;padding:24px 22px;overflow-x:auto;font-family:"IBM Plex Mono",monos
 .p{color:var(--hype)}
 .c{color:var(--dimmer)}
 
+/* podcast */
+.pod{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
+  margin-top:40px;overflow:hidden}
+.pod-bar{display:flex;align-items:center;gap:10px;padding:11px 16px;
+  border-bottom:1px solid var(--line);font-size:11.5px;color:var(--dimmer)}
+.pod-bar .dot{background:var(--hype);box-shadow:none}
+.pod-top{display:flex;align-items:center;gap:20px;padding:24px 26px}
+.pod-play{flex:none;width:52px;height:52px;border-radius:50%;cursor:pointer;
+  border:none;background:var(--slop);color:#0b1300;font-size:16px;font-family:inherit}
+.pod-ep{font-size:11.5px;color:var(--slop-dim);margin-bottom:6px}
+.pod-top h3{font-size:20px;margin-bottom:8px}
+.pod-src{font-size:12px;color:var(--dimmer)}
+.pod-wave{display:none;gap:3px;align-items:flex-end;height:40px;margin-left:auto}
+.pod-wave i{width:3px;border-radius:2px;height:26%;background:var(--hype)}
+.pod.on .pod-wave i{animation:wave 1.2s ease-in-out infinite}
+/* varied heights so the paused waveform reads as one, and staggered delays so the
+   playing one does too */
+.pod-wave i:nth-child(2n){height:46%;animation-delay:-.15s}
+.pod-wave i:nth-child(3n){height:70%;animation-delay:-.45s}
+.pod-wave i:nth-child(4n){height:34%;animation-delay:-.75s}
+.pod-wave i:nth-child(5n){height:88%;animation-delay:-.3s}
+.pod-wave i:nth-child(7n){height:54%;animation-delay:-.6s}
+@keyframes wave{0%,100%{height:16%}50%{height:100%}}
+.pod-script{border-top:1px solid var(--line);padding:22px 26px 26px;
+  font-size:15px;line-height:1.68;color:#d3d0e0}
+.pod-script p{margin-bottom:11px}
+.pod-script b{font-weight:500;color:var(--dim)}
+.pod-script .note{margin-top:16px}
+.pod-eps{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--line)}
+.pod-eps li{display:flex;align-items:baseline;gap:18px;padding:16px 4px;
+  border-bottom:1px solid var(--line)}
+.pod-no{flex:none;font-size:12px;color:var(--slop-dim)}
+.pod-eps h3{font-size:16px;font-weight:500;margin-bottom:5px}
+.pod-eps p{font-size:12.5px;color:var(--dimmer)}
+.pod-len{margin-left:auto;font-size:12.5px;color:var(--dimmer)}
+@media (min-width:720px){.pod-wave{display:flex}}
+
 /* counter */
 .counter{text-align:center;padding:76px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .big{font-size:clamp(38px,8vw,74px);font-weight:700;letter-spacing:-.045em;color:var(--slop);
@@ -387,6 +424,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
         <a href="#bench">Benchmarks</a>
         <a href="#pricing">Pricing</a>
         <a href="#api">API docs</a>
+        <a href="#podcast">The Slop Cast</a>
       </div>
       <div>
         <h4 class="mono">Company</h4>
@@ -502,6 +540,56 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
       <p>Our runtime ships to all thirty-one regions simultaneously. Latency is unchanged. Compliance is delighted. Nobody has asked what is being deployed, and we have not volunteered it.</p>
     </div></div>
   </div>
+</div></section>
+
+<section id="podcast"><div class="wrap">
+  <p class="eyebrow mono">Audio</p>
+  <h2>Upload a document.<br>Get back a podcast.</h2>
+  <p class="lede">Two hosts discuss your file for forty minutes. Neither of them exists.</p>
+
+  <div class="pod" id="pod">
+    <div class="pod-bar mono"><span class="dot"></span> the slop cast · episode 412 of 412</div>
+    <div class="pod-top">
+      <button class="pod-play" id="podPlay" aria-label="Play episode 412"
+              aria-expanded="true" aria-controls="podScript" hidden>&#9654;</button>
+      <div>
+        <div class="pod-ep mono">Ep. 412</div>
+        <h3>Your Q3 Board Deck, Discussed</h3>
+        <p class="pod-src mono">42:17 · generated from three slides · published before you finished uploading</p>
+      </div>
+      <div class="pod-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="pod-script" id="podScript" role="region" aria-label="Transcript, episode 412">
+      <p><b>Marlo:</b> Okay. So. Wow.</p>
+      <p><b>Trent:</b> Right? And I think what's genuinely fascinating here is that this is a deck.</p>
+      <p><b>Marlo:</b> It is a deck.</p>
+      <p><b>Trent:</b> It's a deck.</p>
+      <p><b>Marlo:</b> Take me through the Q3 part, because that really jumped out at me.</p>
+      <p><b>Trent:</b> Sure. So Q3 — and this is the piece most people miss — is the third quarter.</p>
+      <p><b>Marlo:</b> Huh.</p>
+      <p><b>Trent:</b> Mm-hm.</p>
+      <p class="note mono">Transcript continues for a further 39 minutes. Hosts generated. Agreement generated.</p>
+    </div>
+  </div>
+
+  <ul class="pod-eps">
+    <li>
+      <span class="pod-no mono">411</span>
+      <div><h3>The Onboarding Checklist, Unpacked</h3><p class="mono">from nine checkboxes</p></div>
+      <span class="pod-len mono">51:04</span>
+    </li>
+    <li>
+      <span class="pod-no mono">410</span>
+      <div><h3>Your Reply, Explored</h3><p class="mono">from one sentence</p></div>
+      <span class="pod-len mono">47:39</span>
+    </li>
+    <li>
+      <span class="pod-no mono">409</span>
+      <div><h3>This Page, Broken Down</h3><p class="mono">from this page</p></div>
+      <span class="pod-len mono">38:52</span>
+    </li>
+  </ul>
+  <p class="note mono">412 episodes. Available wherever podcasts are ingested.</p>
 </div></section>
 
 <section id="api"><div class="wrap">
@@ -748,6 +836,21 @@ footer{border-top:1px solid var(--line);padding:64px 0 120px;font-size:13.5px;co
     n += Math.floor(Math.random()*900)+200;
     c.textContent = n.toLocaleString('en-US');
   }, 130);
+
+  /* the slop cast: with no JS the transcript is simply open and the button absent */
+  var pod = document.getElementById('pod');
+  var podBtn = document.getElementById('podPlay');
+  var podScript = document.getElementById('podScript');
+  podBtn.hidden = false;
+  podScript.hidden = true;
+  podBtn.setAttribute('aria-expanded', 'false');
+  podBtn.onclick = function(){
+    var playing = pod.classList.toggle('on');
+    podScript.hidden = !playing;
+    podBtn.setAttribute('aria-expanded', String(playing));
+    podBtn.setAttribute('aria-label', (playing ? 'Pause' : 'Play') + ' episode 412');
+    podBtn.innerHTML = playing ? '&#10073;&#10073;' : '&#9654;';
+  };
 
   /* chat */
   var chat = document.getElementById('chat'), log = document.getElementById('log');

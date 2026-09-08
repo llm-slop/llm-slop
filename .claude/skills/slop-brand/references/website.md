@@ -105,7 +105,8 @@ along with the `package.json` npm creates for it — that is a one-off on your
 machine, not a project dependency.)
 
 Sections run in reading order: nav, hero, logo wall, benchmarks, features,
-how-it-works, API, testimonials, pricing, resources, counter, footer.
+how-it-works, the slop cast, API, testimonials, pricing, resources, counter,
+footer.
 
 The careers landing page runs: nav, hero, stat strip, principles, benefits, job
 board, hiring process, employee quotes, offices, footer.
@@ -140,11 +141,12 @@ company read as one company, so check the other surfaces before changing a detai
 
 ## Specimen on this page
 
-Two places hold deliberate slop, and only these two:
+Three places hold deliberate slop, and only these three:
 
 - the `open` / `mid` / `close` arrays in the generator script, which assemble the
   rotating fake LinkedIn post
 - the sample response in the API section
+- the episode transcript in the slop cast section, framed by the player above it
 
 A third is `feed/index.html`, which is the whole point of that page: the featured post
 and the generated titles are product output, framed as output by the bar above them
@@ -158,7 +160,7 @@ the other eleven; incident updates, release notes, the trust centre and the deck
 company writing about itself. The deck sells infrastructure, which is not what the home
 page sells; keep each surface internally coherent and leave the mismatch alone.
 
-Both are framed as product output. Everything else on the page is house voice.
+All three are framed as product output. Everything else on the page is house voice.
 
 ## Adding a section
 
