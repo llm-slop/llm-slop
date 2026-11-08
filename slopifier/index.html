@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Slopifier: one sentence in, a paragraph out — llm-slop</title>
+<meta name="description" content="Paste one plain sentence, receive an enterprise-ready paragraph. Free forever, at considerable cost to the sentence.">
+<meta name="theme-color" content="#08070d">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://llm-slop.com/slopifier/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308070d'/%3E%3Crect x='11' y='29' width='42' height='6' rx='3' fill='%23c6ff3f'/%3E%3C/svg%3E">
+<link rel="manifest" href="../manifest.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="llm-slop">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://llm-slop.com/slopifier/">
+<meta property="og:title" content="The Slopifier: one sentence in, a paragraph out — llm-slop">
+<meta property="og:description" content="Paste one plain sentence, receive an enterprise-ready paragraph. Free forever, at considerable cost to the sentence.">
+<meta property="og:image" content="https://llm-slop.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="llm-slop — Say nothing, at scale.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Slopifier: one sentence in, a paragraph out — llm-slop">
+<meta name="twitter:description" content="Paste one plain sentence, receive an enterprise-ready paragraph. Free forever, at considerable cost to the sentence.">
+<meta name="twitter:image" content="https://llm-slop.com/og.png">
+<meta name="twitter:image:alt" content="llm-slop — Say nothing, at scale.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+<script src="../site.js" defer></script>
+<style>
+.slopsect{padding:56px 0 24px}
+.slop-tool{max-width:680px;margin-top:40px}
+.slop-tool .fld{display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;color:var(--dimmer);margin:0 0 8px;text-transform:uppercase;letter-spacing:.1em}
+#slop-in{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);color:var(--text);font:inherit;font-size:16px;padding:14px 16px;resize:vertical}
+#slop-in:focus{outline:2px solid var(--slop);outline-offset:2px;border-color:var(--slop)}
+.slop-controls{display:flex;gap:18px;align-items:flex-start;margin:18px 0 30px;flex-wrap:wrap}
+.slop-delve{font-size:14.5px;color:var(--dim);display:block;max-width:380px}
+.slop-delve input{accent-color:var(--slop);width:16px;height:16px;vertical-align:-3px;margin-right:6px}
+.slop-delve .note{display:block;margin-top:5px}
+.slop-spec{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--hype);margin:0 0 10px}
+#slop-out{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;font-size:16.5px;line-height:1.65;white-space:pre-wrap;min-height:96px}
+.slop-actions{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.slop-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:40px}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://llm-slop.com/slopifier/#webpage",
+      "url": "https://llm-slop.com/slopifier/",
+      "name": "The Slopifier: one sentence in, a paragraph out",
+      "description": "Paste one plain sentence, receive an enterprise-ready paragraph. Free forever, at considerable cost to the sentence.",
+      "isPartOf": { "@id": "https://llm-slop.com/#website" },
+      "about": { "@id": "https://llm-slop.com/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "llm-slop", "item": "https://llm-slop.com/" },
+        { "@type": "ListItem", "position": 2, "name": "The Slopifier", "item": "https://llm-slop.com/slopifier/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+  <a class="brand" href="../">llm<span>-</span>slop</a>
+  <span class="ver mono">v4.1-turbo-preview-final-v2</span>
+  <div class="navlinks">
+    <a href="../#features">Product</a>
+    <a href="../#pricing">Pricing</a>
+    <a href="../careers/">Careers</a>
+    <a href="../status/">Status</a>
+  </div>
+  <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+  <div class="menu" id="menu" hidden><div class="wrap">
+    <div class="menu-grid">
+      <div>
+        <h4 class="mono">Product</h4>
+        <a href="../#features">Features</a>
+        <a href="../#bench">Benchmarks</a>
+        <a href="../#pricing">Pricing</a>
+        <a href="../#api">API docs</a>
+        <a href="./" aria-current="page">Slopifier</a>
+      </div>
+      <div>
+        <h4 class="mono">Company</h4>
+        <a href="../careers/">Careers (16 open)</a>
+        <a href="../trust/">Trust centre</a>
+        <a href="../deck/">Series B deck</a>
+      </div>
+      <div>
+        <h4 class="mono">Resources</h4>
+        <a href="../glossary/">Glossary</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../feed/">The Feed</a>
+        <a href="../changelog/">Changelog</a>
+        <a href="../status/">Status</a>
+      </div>
+    </div>
+  </div></div>
+</nav>
+
+<header class="chero"><div class="wrap">
+  <p class="eyebrow mono">Free tools</p>
+  <h1>The Slopifier</h1>
+  <p class="sub">Paste one plain sentence. Receive an enterprise-ready paragraph, at no cost to you and at some cost to the sentence.</p>
+
+  <div class="stats">
+    <div class="stat"><b>1</b><span>sentence in</span></div>
+    <div class="stat"><b>4,000%</b><span>more words out</span></div>
+    <div class="stat"><b>0</b><span>ideas added</span></div>
+  </div>
+</div></header>
+
+<section class="slopsect"><div class="wrap">
+  <p class="eyebrow mono">The tool</p>
+  <h2>From sentence<br>to statement.</h2>
+  <p class="lede">Type something a person would say. We return something a company would publish.</p>
+
+  <div class="slop-tool">
+    <label class="fld" for="slop-in">Your sentence</label>
+    <textarea id="slop-in" rows="3" maxlength="400">We should meet next week.</textarea>
+    <div class="slop-controls">
+      <button class="btn btn-go btn-lg" id="slop-go" type="button">Slopify</button>
+      <label class="slop-delve"><input type="checkbox" id="slop-delve"> Delve Mode
+        <span class="note">Replaces the words you meant with the words a model would have reached for. Team plan and above, except here, where it is free.</span>
+      </label>
+    </div>
+
+    <p class="slop-spec">Generated output - the product, working as intended</p>
+    <div id="slop-out">In today's rapidly evolving landscape, one thing is clear: we should meet next week. This is not just scheduling. It is a paradigm shift in how forward-thinking organisations align on alignment. Going forward, we will leverage best-in-class calendar synergies to operationalise the meeting at scale.
+
+Let that sink in.</div>
+    <div class="slop-actions">
+      <button class="btn" id="slop-copy" type="button">Copy output</button>
+      <span class="note" id="slop-copied" hidden>Copied. Attribution is appreciated and legally meaningless.</span>
+    </div>
+    <p class="note mono" style="margin-top:18px">Slopifications on this device: <span id="slop-count">0</span>. Retention, measured the only place we can measure it.</p>
+  </div>
+</div></section>
+
+<section class="slopsect"><div class="wrap">
+  <p class="eyebrow mono">Fine print</p>
+  <h2>How it works.</h2>
+
+  <div class="slop-cards">
+    <div class="card">
+      <h3>Runs in your browser</h3>
+      <p>Your sentence is never uploaded, stored or read. Privacy by architecture: we cannot leak what we were too cheap to collect.</p>
+    </div>
+    <div class="card">
+      <h3>Free forever</h3>
+      <p>No account, no trial, no forty minute call. The pricing page remains available if you miss being sold to.</p>
+    </div>
+    <div class="card">
+      <h3>Enterprise ready</h3>
+      <p>The output is indistinguishable from a real corporate update. That is the pitch, and also the problem.</p>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="badges mono">
+    <span class="badge">SOC 2 Type II (self-attested)</span>
+    <span class="badge">GDPR-adjacent</span>
+    <span class="badge">ISO 9001 (aspirational)</span>
+    <span class="badge">99.99% uptime, 0.01% accuracy</span>
+  </div>
+  <div class="fgrid">
+    <div>
+      <h4>Product</h4>
+      <a href="../#features">Generate</a><a href="../#features">Regenerate</a><a href="../#api">Docs</a><a href="./">Slopifier</a><a href="../changelog/">Changelog</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="../careers/">Careers (16 open, 0 real)</a><a href="../trust/">Trust centre</a><a href="../deck/">Series B deck</a><a href="../#pricing">Pricing</a><a href="../#bench">Benchmarks</a>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <a href="../glossary/">Glossary</a><a href="../faq/">FAQ</a><a href="../feed/">The Feed (41,000 posts)</a><a href="../status/">Status</a><a href="../changelog/">Changelog</a>
+    </div>
+  </div>
+  <p class="mono">&copy; 2026 llm-slop, inc. Some rights reserved. Most generated.<br>
+  <a href="../" style="text-decoration:none">&larr; Back to llm-slop</a></p>
+</div></footer>
+
+<script>
+(function(){
+  var openers=[
+    "In today's rapidly evolving landscape,",
+    "As we navigate an era of unprecedented change,",
+    "At the intersection of innovation and execution,",
+    "As a recognised thought leader in this space,",
+    "In today's fast-paced digital world,",
+    "As organisations everywhere reimagine what is possible,"
+  ];
+  var cores=[
+    "one thing is clear: {s}.",
+    "the data is unambiguous: {s}.",
+    "it has never been more evident that {s}.",
+    "the conversation keeps coming back to one truth: {s}."
+  ];
+  var expansions=[
+    "This is not just a priority. It is a paradigm shift in how forward-thinking teams move the needle.",
+    "Going forward, we will leverage best-in-class synergies to operationalise this at scale.",
+    "Our cross-functional stakeholders have aligned, and what they have aligned on is alignment.",
+    "We are doubling down on our core competency of having core competencies.",
+    "This is a game-changer, a category-definer and a wake-up call, and we have scheduled all three.",
+    "It is time to take this offline, circle back, and put a pin in everything except this.",
+    "The runway is long, the tailwinds are strong, and the deliverables are, at the time of writing, theoretical."
+  ];
+  var closers=[
+    "Let that sink in.",
+    "The future is now, and it is scalable.",
+    "We are just getting started.",
+    "Agree? Repost to your network.",
+    "Thoughts?",
+    "Exciting times ahead."
+  ];
+  var delve={
+    "use":"utilise","using":"utilising","help":"facilitate","need":"necessitate",
+    "start":"commence","get":"obtain","buy":"procure","build":"architect",
+    "fix":"remediate","make":"manufacture","show":"demonstrate","think":"ideate",
+    "meet":"align","talk":"dialogue","plan":"strategise","do":"execute","new":"next-generation"
+  };
+  function pick(a){return a[Math.floor(Math.random()*a.length)]}
+  function delvese(t){
+    return t.replace(/\b(use|using|help|need|start|get|buy|build|fix|make|show|think|meet|talk|plan|do|new)\b/gi,
+      function(m){var r=delve[m.toLowerCase()];return m[0]===m[0].toUpperCase()?r[0].toUpperCase()+r.slice(1):r});
+  }
+  function slopify(raw,delveOn){
+    var s=(raw||"").trim().replace(/\s+/g," ").replace(/[.!?]+$/,"");
+    if(!s)return "";
+    if(!/^I\b/.test(s))s=s[0].toLowerCase()+s.slice(1);
+    var i=Math.floor(Math.random()*expansions.length),j;
+    do{j=Math.floor(Math.random()*expansions.length)}while(j===i);
+    var out=pick(openers)+" "+pick(cores).replace("{s}",s)+" "+expansions[i]+" "+expansions[j]+"\n\n"+pick(closers);
+    if(delveOn)out=delvese(out);
+    return out;
+  }
+  var inp=document.getElementById("slop-in"),
+      out=document.getElementById("slop-out"),
+      go=document.getElementById("slop-go"),
+      dv=document.getElementById("slop-delve"),
+      cp=document.getElementById("slop-copy"),
+      cd=document.getElementById("slop-copied"),
+      ct=document.getElementById("slop-count");
+  var n=0;
+  try{n=parseInt(localStorage.getItem("slopifier-count")||"0",10)||0}catch(e){}
+  ct.textContent=n;
+  go.addEventListener("click",function(){
+    var r=slopify(inp.value,dv.checked);
+    if(!r){out.textContent="Please supply a sentence. Even a small one. We have made paragraphs from less.";return}
+    out.textContent=r;
+    n++;ct.textContent=n;
+    try{localStorage.setItem("slopifier-count",String(n))}catch(e){}
+    cd.hidden=true;
+  });
+  cp.addEventListener("click",function(){
+    var t=out.textContent;
+    function done(){cd.hidden=false}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,done)}
+    else{
+      var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);
+      ta.select();try{document.execCommand("copy")}catch(e){}document.body.removeChild(ta);done();
+    }
+  });
+})();
+</script>
+</body>
+</html>
