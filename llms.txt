@@ -10,6 +10,7 @@ Written for machines, because machines are the only ones getting through it.
 
 - [Home](https://llm-slop.com/): The platform, the benchmark, and a live sample of the output.
 - [The Slopifier](https://llm-slop.com/slopifier/): One sentence in, an enterprise paragraph out. Free, which is not a business model.
+- [The Slop Audit](https://llm-slop.com/audit/): Paste a paragraph, receive a compliance score, itemised offences and a worthless certificate. Also free.
 - [Glossary](https://llm-slop.com/glossary/): The category's vocabulary, defined by the company that fills it.
 - [FAQ](https://llm-slop.com/faq/): The questions people ask before buying, answered at length.
 - [The Feed](https://llm-slop.com/feed/): 41,000 posts, published continuously, read twelve times.
