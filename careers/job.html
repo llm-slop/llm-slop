@@ -7,6 +7,21 @@
 <meta name="description" content="An open role at llm-slop. Written by the hiring manager, unedited.">
 <meta name="theme-color" content="#08070d">
 <meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="llm-slop">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://llm-slop.com/careers/">
+<meta property="og:title" content="Open role — llm-slop">
+<meta property="og:description" content="An open role at llm-slop. Written by the hiring manager, unedited.">
+<meta property="og:image" content="https://llm-slop.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="llm-slop — Say nothing, at scale.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Open role — llm-slop">
+<meta name="twitter:description" content="An open role at llm-slop. Written by the hiring manager, unedited.">
+<meta name="twitter:image" content="https://llm-slop.com/og.png">
+<meta name="twitter:image:alt" content="llm-slop — Say nothing, at scale.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308070d'/%3E%3Crect x='11' y='29' width='42' height='6' rx='3' fill='%23c6ff3f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,6 +91,8 @@
       <dl id="jfacts"></dl>
       <button class="btn btn-go" id="applyBtn">Apply</button>
       <p class="fine">One click. We take it from here.</p>
+      <button class="btn" id="shareBtn">Copy link to this listing</button>
+      <p class="fine" id="shareFine"></p>
 
       <div class="apply" id="applyOut" hidden>
         <ul class="trace mono" id="trace"></ul>
@@ -608,6 +625,27 @@ if(!role){
 
 /* Apply: nothing is collected. The platform writes the application, reviews it,
    and declines it, which is the entire product experience. */
+/* Share: copies the live URL of this listing to the clipboard. */
+var shareBtn = document.getElementById('shareBtn');
+if(shareBtn){
+  shareBtn.addEventListener('click', function(){
+    var done = function(){
+      shareBtn.textContent = 'Copied';
+      document.getElementById('shareFine').textContent =
+        'Send it to someone who would be perfect for this. There is no one perfect for this.';
+      setTimeout(function(){ shareBtn.textContent = 'Copy link to this listing'; }, 2400);
+    };
+    var fallback = function(){
+      document.getElementById('shareFine').textContent = location.href;
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(location.href).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+}
+
 var btn = document.getElementById('applyBtn');
 if(btn){
   var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
