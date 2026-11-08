@@ -149,7 +149,9 @@
 Let that sink in.</div>
     <div class="slop-actions">
       <button class="btn" id="slop-copy" type="button">Copy output</button>
+      <button class="btn" id="slop-img" type="button">Download image</button>
       <span class="note" id="slop-copied" hidden>Copied. Attribution is appreciated and legally meaningless.</span>
+      <span class="note" id="slop-imged" hidden>Downloaded. The sentence was never ours.</span>
     </div>
     <p class="note mono" style="margin-top:18px">Slopifications on this device: <span id="slop-count">0</span>. Retention, measured the only place we can measure it.</p>
   </div>
@@ -280,6 +282,73 @@ Let that sink in.</div>
       var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);
       ta.select();try{document.execCommand("copy")}catch(e){}document.body.removeChild(ta);done();
     }
+  });
+  var im=document.getElementById("slop-img"), ie=document.getElementById("slop-imged");
+  function wrapLines(ctx,text,maxW){
+    var lines=[],paras=String(text).split("\n"),i,j,words,line,test;
+    for(i=0;i<paras.length;i++){
+      if(!paras[i]){lines.push("");continue}
+      words=paras[i].split(/\s+/);line="";
+      for(j=0;j<words.length;j++){
+        test=line?line+" "+words[j]:words[j];
+        if(ctx.measureText(test).width>maxW&&line){lines.push(line);line=words[j]}
+        else line=test;
+      }
+      lines.push(line);
+    }
+    return lines;
+  }
+  function roundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+  }
+  function buildCard(sentence,slop){
+    var W=1200,PAD=64,INNER=W-PAD*2;
+    var cv=document.createElement("canvas"),ctx=cv.getContext("2d");
+    var fSentence='500 40px "Space Grotesk",system-ui,sans-serif';
+    var fSlop='400 29px "Space Grotesk",system-ui,sans-serif';
+    var fMono='500 19px "IBM Plex Mono",ui-monospace,monospace';
+    ctx.font=fSentence;var sLines=wrapLines(ctx,sentence,INNER);
+    ctx.font=fSlop;var oLines=wrapLines(ctx,slop,INNER);
+    var y=PAD,i;
+    y+=19+70+34;
+    y+=sLines.length*52+26+62+36;
+    for(i=0;i<oLines.length;i++)y+=(oLines[i]===""?20:40);
+    var H=y+PAD;
+    cv.width=W;cv.height=H;
+    ctx=cv.getContext("2d");
+    ctx.fillStyle="#08070d";ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle="#242232";ctx.lineWidth=2;
+    roundRect(ctx,1,1,W-2,H-2,14);ctx.stroke();
+    var cy=PAD;
+    ctx.font=fMono;ctx.fillStyle="#5d5972";ctx.textBaseline="alphabetic";
+    ctx.fillText("LLM-SLOP.COM/SLOPIFIER",PAD,cy+19);
+    var wm=ctx.measureText("1 SENTENCE IN  \u00b7  4,000% MORE WORDS OUT  \u00b7  0 IDEAS ADDED").width;
+    ctx.fillText("1 SENTENCE IN  \u00b7  4,000% MORE WORDS OUT  \u00b7  0 IDEAS ADDED",W-PAD-wm,cy+19);
+    cy+=70;
+    ctx.fillStyle="#c6ff3f";ctx.fillText("WHAT YOU SAID",PAD,cy+34);cy+=34;
+    ctx.font=fSentence;ctx.fillStyle="#eae8f2";
+    for(i=0;i<sLines.length;i++){cy+=52;ctx.fillText(sLines[i],PAD,cy)}
+    cy+=26;
+    ctx.strokeStyle="#242232";ctx.beginPath();ctx.moveTo(PAD,cy+31);ctx.lineTo(W-PAD,cy+31);ctx.stroke();
+    cy+=62;
+    ctx.font=fMono;ctx.fillStyle="#c6ff3f";ctx.fillText("WHAT A COMPANY WOULD PUBLISH",PAD,cy+36);cy+=36;
+    ctx.font=fSlop;ctx.fillStyle="#cfccdd";
+    for(i=0;i<oLines.length;i++){cy+=(oLines[i]===""?20:40);if(oLines[i]!=="")ctx.fillText(oLines[i],PAD,cy)}
+    return cv;
+  }
+  im.addEventListener("click",function(){
+    var cv=buildCard(inp.value,out.textContent);
+    function save(blob){
+      var url=blob?URL.createObjectURL(blob):cv.toDataURL("image/png");
+      var a=document.createElement("a");a.href=url;a.download="llm-slop-before-after.png";
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+      if(blob)setTimeout(function(){URL.revokeObjectURL(url)},4000);
+      ie.hidden=false;
+    }
+    if(cv.toBlob)cv.toBlob(function(b){save(b)},"image/png");
+    else save(null);
   });
 })();
 </script>
