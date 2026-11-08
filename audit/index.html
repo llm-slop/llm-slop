@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Slop Audit: how corporate is your paragraph? — llm-slop</title>
+<meta name="description" content="Paste a paragraph of corporate text. Our Compliance Division scores the slop, lists the offences and issues a worthless certificate.">
+<meta name="theme-color" content="#08070d">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://llm-slop.com/audit/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308070d'/%3E%3Crect x='11' y='29' width='42' height='6' rx='3' fill='%23c6ff3f'/%3E%3C/svg%3E">
+<link rel="manifest" href="../manifest.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="llm-slop">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://llm-slop.com/audit/">
+<meta property="og:title" content="The Slop Audit: how corporate is your paragraph? — llm-slop">
+<meta property="og:description" content="Paste a paragraph of corporate text. Our Compliance Division scores the slop, lists the offences and issues a certificate.">
+<meta property="og:image" content="https://llm-slop.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="llm-slop — Say nothing, at scale.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Slop Audit: how corporate is your paragraph? — llm-slop">
+<meta name="twitter:description" content="Paste a paragraph of corporate text. Our Compliance Division scores the slop, lists the offences and issues a certificate.">
+<meta name="twitter:image" content="https://llm-slop.com/og.png">
+<meta name="twitter:image:alt" content="llm-slop — Say nothing, at scale.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+<script src="../site.js" defer></script>
+<style>
+.auditsect{padding:56px 0 24px}
+.audit-tool{max-width:680px;margin-top:40px}
+.audit-tool .fld{display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;color:var(--dimmer);margin:0 0 8px;text-transform:uppercase;letter-spacing:.1em}
+#audit-in{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);color:var(--text);font:inherit;font-size:16px;padding:14px 16px;resize:vertical}
+#audit-in:focus{outline:2px solid var(--slop);outline-offset:2px;border-color:var(--slop)}
+.audit-controls{display:flex;gap:18px;align-items:center;margin:18px 0 30px;flex-wrap:wrap}
+.audit-spec{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--hype);margin:0 0 10px}
+#audit-out{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;font-size:15.5px;line-height:1.6}
+.audit-score{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;font-size:52px;color:var(--slop);line-height:1.1;margin:0 0 4px}
+.audit-verdict{font-size:17px;color:var(--text);margin:0 0 18px}
+.audit-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 18px}
+.audit-metric{border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px}
+.audit-metric b{display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:18px;color:var(--text)}
+.audit-metric span{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dimmer)}
+.audit-findings{margin:0;padding-left:20px;color:var(--dim)}
+.audit-findings li{margin:4px 0}
+.audit-findings code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;color:var(--slop)}
+.audit-actions{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.audit-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:40px}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://llm-slop.com/audit/#webpage",
+      "url": "https://llm-slop.com/audit/",
+      "name": "The Slop Audit: how corporate is your paragraph?",
+      "description": "Paste a paragraph of corporate text. Our Compliance Division scores the slop, lists the offences and issues a certificate.",
+      "isPartOf": { "@id": "https://llm-slop.com/#website" },
+      "about": { "@id": "https://llm-slop.com/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "llm-slop", "item": "https://llm-slop.com/" },
+        { "@type": "ListItem", "position": 2, "name": "The Slop Audit", "item": "https://llm-slop.com/audit/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+  <a class="brand" href="../">llm<span>-</span>slop</a>
+  <span class="ver mono">v4.1-turbo-preview-final-v2</span>
+  <div class="navlinks">
+    <a href="../#features">Product</a>
+    <a href="../#pricing">Pricing</a>
+    <a href="../careers/">Careers</a>
+    <a href="../status/">Status</a>
+  </div>
+  <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+  <div class="menu" id="menu" hidden><div class="wrap">
+    <div class="menu-grid">
+      <div>
+        <h4 class="mono">Product</h4>
+        <a href="../#features">Features</a>
+        <a href="../#bench">Benchmarks</a>
+        <a href="../#pricing">Pricing</a>
+        <a href="../#api">API docs</a>
+        <a href="../slopifier/">Slopifier</a>
+        <a href="./" aria-current="page">Slop Audit</a>
+      </div>
+      <div>
+        <h4 class="mono">Company</h4>
+        <a href="../careers/">Careers (16 open)</a>
+        <a href="../trust/">Trust centre</a>
+        <a href="../deck/">Series B deck</a>
+      </div>
+      <div>
+        <h4 class="mono">Resources</h4>
+        <a href="../glossary/">Glossary</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../feed/">The Feed</a>
+        <a href="../changelog/">Changelog</a>
+        <a href="../status/">Status</a>
+      </div>
+    </div>
+  </div></div>
+</nav>
+
+<header class="chero"><div class="wrap">
+  <p class="eyebrow mono">Free tools</p>
+  <h1>The Slop Audit</h1>
+  <p class="sub">Paste a paragraph of corporate text. Our Compliance Division will score the slop, itemise the offences and issue a certificate. Findings are final, and mostly made up.</p>
+
+  <div class="stats">
+    <div class="stat"><b>0</b><span>texts uploaded</span></div>
+    <div class="stat"><b>100%</b><span>findings exaggerated</span></div>
+    <div class="stat"><b>&infin;</b><span>billable hours avoided</span></div>
+  </div>
+</div></header>
+
+<section class="auditsect"><div class="wrap">
+  <p class="eyebrow mono">The tool</p>
+  <h2>Submit your text<br>for review.</h2>
+  <p class="lede">Wrote something you're proud of? The Slopifier's older, judgemental sibling will see about that.</p>
+
+  <div class="audit-tool">
+    <label class="fld" for="audit-in">Your paragraph</label>
+    <textarea id="audit-in" rows="5" maxlength="3000">In today's rapidly evolving landscape, we are leveraging best-in-class synergies to operationalise alignment at scale. Going forward, our cross-functional stakeholders will circle back to double down on our core competencies. This is a game-changer. Let that sink in.</textarea>
+    <div class="audit-controls">
+      <button class="btn btn-go btn-lg" id="audit-go" type="button">Audit</button>
+      <span class="note">The audit runs in your browser and counts clich&eacute;s. It does not detect AI writing, and a low score is not a badge of authenticity either. The Compliance Division sees nothing, which has never stopped it before.</span>
+    </div>
+
+    <p class="audit-spec">Findings - preliminary, final and binding</p>
+    <div id="audit-out">
+      <p class="audit-score">84<span style="font-size:22px;color:var(--dimmer)">/100</span></p>
+      <p class="audit-verdict">Textbook slop. This paragraph says nothing, at scale. Offer letter attached. There is no offer letter.</p>
+      <div class="audit-metrics">
+        <div class="audit-metric"><b>42.1</b><span>synergy density /100w</span></div>
+        <div class="audit-metric"><b>5.3</b><span>delve index /100w</span></div>
+        <div class="audit-metric"><b>0%</b><span>sentence inflation</span></div>
+        <div class="audit-metric"><b>9.5</b><span>words per sentence</span></div>
+      </div>
+      <p class="audit-spec" style="margin:0 0 8px">Principal offences</p>
+      <ul class="audit-findings">
+        <li><code>synergies</code> &times;1 - stock corporate phrase</li>
+        <li><code>leveraging</code> &times;1 - stock corporate phrase</li>
+        <li><code>best-in-class</code> &times;1 - stock corporate phrase</li>
+        <li><code>circle back</code> &times;1 - stock corporate phrase</li>
+        <li><code>game-changer</code> &times;1 - stock corporate phrase</li>
+        <li><code>at scale</code> - stock corporate phrase</li>
+        <li><code>landscape</code> &times;1 - stock corporate phrase</li>
+        <li><code>double down</code> &times;1 - stock corporate phrase</li>
+      </ul>
+      <p class="note" style="margin-top:14px">The score counts stock phrases and habits of corporate style. It cannot tell who or what wrote the text, and it is not a measure of quality. The sample above has already been found guilty.</p>
+    </div>
+    <div class="audit-actions">
+      <button class="btn" id="audit-img" type="button">Download certificate</button>
+      <span class="note" id="audit-imged" hidden>Downloaded. Frame it. HR loves these.</span>
+    </div>
+    <p class="note mono" style="margin-top:18px">Audits on this device: <span id="audit-count">0</span>. Compliance, measured the only place we can measure it.</p>
+    <p class="note" style="margin-top:8px">Dispute the findings? <a href="https://github.com/llm-slop/llm-slop/issues">Open a public issue</a>. Appeals are heard in the order they are ignored. GitHub keeps whatever you write there; this page still keeps nothing.</p>
+    <p class="note" style="margin-top:8px">Need more slop, not less? The <a href="../slopifier/">Slopifier</a> turns one honest sentence into a paragraph a company would publish.</p>
+  </div>
+</div></section>
+
+<section class="auditsect"><div class="wrap">
+  <p class="eyebrow mono">Fine print</p>
+  <h2>How the audit works.</h2>
+
+  <div class="audit-cards">
+    <div class="card">
+      <h3>Runs in your browser</h3>
+      <p>Your paragraph is never uploaded, stored or read. The Compliance Division operates entirely on your device, which is also where it files its expenses.</p>
+    </div>
+    <div class="card">
+      <h3>Scientifically unrigorous</h3>
+      <p>The score combines buzzword density, delve index and sentence inflation using a formula devised during a lunch break. It says nothing about who wrote the text or whether it is any good. The lunch was excellent.</p>
+    </div>
+    <div class="card">
+      <h3>Certificates mean nothing</h3>
+      <p>The downloadable certificate has no legal standing, no educational value and no expiry date. It is, in that sense, perfect.</p>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="badges mono">
+    <span class="badge">SOC 2 Type II (self-attested)</span>
+    <span class="badge">GDPR-adjacent</span>
+    <span class="badge">ISO 9001 (aspirational)</span>
+    <span class="badge">99.99% uptime, 0.01% accuracy</span>
+  </div>
+  <div class="fgrid">
+    <div>
+      <h4>Product</h4>
+      <a href="../#features">Generate</a><a href="../#features">Regenerate</a><a href="../#api">Docs</a><a href="../slopifier/">Slopifier</a><a href="./">Slop Audit</a><a href="../changelog/">Changelog</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="../careers/">Careers (16 open, 0 real)</a><a href="../trust/">Trust centre</a><a href="../deck/">Series B deck</a><a href="../#pricing">Pricing</a><a href="../#bench">Benchmarks</a>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <a href="../glossary/">Glossary</a><a href="../faq/">FAQ</a><a href="../feed/">The Feed (41,000 posts)</a><a href="../status/">Status</a><a href="../changelog/">Changelog</a>
+    </div>
+  </div>
+  <p class="mono">&copy; 2026 llm-slop, inc. Some rights reserved. Most generated.<br>
+  <a href="../" style="text-decoration:none">&larr; Back to llm-slop</a></p>
+</div></footer>
+
+<script>
+(function(){
+  var BUZZ=[
+    "synergy","synergies","synergistic","leverage","leveraging","paradigm","paradigm shift",
+    "best-in-class","best in class","move the needle","circle back","deep dive","low-hanging fruit",
+    "game-changer","game changer","scalable","at scale","robust","holistic","streamline",
+    "cutting-edge","cutting edge","thought leader","fast-paced","landscape","unpack","double down",
+    "doubling down","core competency","core competencies","align on","alignment","operationalise",
+    "operationalize","utilise","utilize","facilitate","commence","stakeholder","stakeholders",
+    "deliverable","deliverables","going forward","reimagine","unprecedented","let that sink in",
+    "the future is now","we are just getting started","exciting times ahead","take this offline",
+    "put a pin in","wake-up call","cross-functional","forward-thinking","one thing is clear",
+    "value-add","win-win","touch base","bandwidth","boil the ocean","disrupt","disruption",
+    "disruptive","next-generation","world-class","mission-critical","north star","pain point",
+    "quick win","action item","action items","takeaway","takeaways","ecosystem","empower",
+    "supercharge","unlock","elevate","foster","seamless","revolutionary","transformative",
+    "unleash","harness","ai-powered","in today's","thoughts?","agree? repost","runway","tailwinds",
+    "innovation","innovative","ideate","dialogue","strategise","strategize","necessitate",
+    "procure","remediate","architect","obtain","next steps","move forward","moving forward",
+    "at the end of the day","drill down","synergise","synergize","on the same page","visibility",
+    "buy-in","deliver","impactful","iterate","pivot","agile","lean in","empowerment","enablement"
+  ];
+  var DELVE=["utilise","utilize","utilising","utilizing","facilitate","facilitating","commence",
+    "operationalise","operationalize","operationalising","operationalizing","necessitate","procure",
+    "procurement","remediate","ideate","ideation","strategise","strategize","delve","delving",
+    "landscape","tapestry","testament","furthermore","moreover","additionally","navigate","navigating"];
+  var OPENERS=["in today's","as we navigate","at the intersection of","as a recognised thought leader",
+    "as a recognized thought leader","in a world where","in an era of","as organisations","as organizations"];
+  var CLOSERS=["let that sink in","thoughts?","agree? repost","exciting times ahead","the future is now",
+    "we are just getting started","stay tuned","watch this space","repost to your network"];
+
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+  function words(t){return (t.trim().match(/\S+/g)||[])}
+  function sentences(t){
+    var parts=t.replace(/\s+/g," ").split(/(?<=[.!?])\s+/).filter(function(s){return s.trim().length>1});
+    return parts.length?parts:[t];
+  }
+  function countHits(t,list){
+    var low=" "+t.toLowerCase().replace(/[^a-z0-9'\-\?\s]/g," ").replace(/\s+/g," ")+" ";
+    var hits={},total=0,i,k,c;
+    for(i=0;i<list.length;i++){
+      k=list[i];
+      var needle=k.replace(/[^a-z0-9'\-\?\s]/g," ");
+      c=low.split(" "+needle+" ").length-1;
+      if(needle.slice(-1)==="?")c=low.split(" "+needle).length-1;
+      if(c>0){hits[k]=(hits[k]||0)+c;total+=c}
+    }
+    return {hits:hits,total:total};
+  }
+  function audit(raw){
+    var t=(raw||"").trim();
+    if(words(t).length<3)return null;
+    var w=words(t).length, s=sentences(t).length, avg=w/s;
+    var buzz=countHits(t,BUZZ), delve=countHits(t,DELVE);
+    var open=countHits(t,OPENERS).total, close=countHits(t,CLOSERS).total;
+    var per100=100/w;
+    var buzzD=buzz.total*per100, delveD=delve.total*per100;
+    var inflation=Math.max(0,Math.min(1,(avg-14)/22));
+    var score=Math.round(
+      Math.min(1,buzzD/7)*52 +
+      Math.min(1,delveD/3.5)*18 +
+      inflation*16 +
+      Math.min(1,(open+close)/2)*14
+    );
+    if(score>100)score=100;if(score<0)score=0;
+    var verdict;
+    if(score<20)verdict="Alarmingly readable. A person almost said something. Recommend immediate escalation to Marketing.";
+    else if(score<40)verdict="Mildly leveraged. A few stock phrases, but the sentence still has a pulse.";
+    else if(score<60)verdict="Solidly corporate. The stakeholders are aligned, on alignment.";
+    else if(score<80)verdict="Enterprise-grade slop. Indistinguishable from our own output.";
+    else verdict="Textbook slop. This paragraph says nothing, at scale. Offer letter attached. There is no offer letter.";
+    var offenses=[],k;
+    var all={};
+    for(k in buzz.hits)all[k]={count:buzz.hits[k],note:"stock corporate phrase"};
+    for(k in delve.hits)if(!all[k])all[k]={count:delve.hits[k],note:"word a model reaches for"};
+    var openHits=countHits(t,OPENERS).hits,closeHits=countHits(t,CLOSERS).hits;
+    for(k in openHits)if(!all[k])all[k]={count:openHits[k],note:"template opening line"};
+    for(k in closeHits)if(!all[k])all[k]={count:closeHits[k],note:"template closing line"};
+    var keys=Object.keys(all).sort(function(a,b){return all[b].count-all[a].count});
+    for(var i=0;i<keys.length&&i<8;i++)offenses.push({phrase:keys[i],count:all[keys[i]].count,note:all[keys[i]].note});
+    return {score:score,verdict:verdict,words:w,sentences:s,avgLen:Math.round(avg*10)/10,
+      buzzD:Math.round(buzzD*10)/10,delveD:Math.round(delveD*10)/10,
+      inflation:Math.round(inflation*100),openClose:open+close,offenses:offenses};
+  }
+  function render(r){
+    var h='<p class="audit-score">'+r.score+'<span style="font-size:22px;color:var(--dimmer)">/100</span></p>';
+    h+='<p class="audit-verdict">'+esc(r.verdict)+'</p>';
+    h+='<div class="audit-metrics">';
+    h+='<div class="audit-metric"><b>'+r.buzzD+'</b><span>synergy density /100w</span></div>';
+    h+='<div class="audit-metric"><b>'+r.delveD+'</b><span>delve index /100w</span></div>';
+    h+='<div class="audit-metric"><b>'+r.inflation+'%</b><span>sentence inflation</span></div>';
+    h+='<div class="audit-metric"><b>'+r.avgLen+'</b><span>words per sentence</span></div>';
+    h+='</div>';
+    if(r.offenses.length){
+      h+='<p class="audit-spec" style="margin:0 0 8px">Principal offences</p><ul class="audit-findings">';
+      for(var i=0;i<r.offenses.length;i++)
+        h+='<li><code>'+esc(r.offenses[i].phrase)+'</code> &times;'+r.offenses[i].count+' - '+esc(r.offenses[i].note)+'</li>';
+      h+='</ul>';
+    }else{
+      h+='<p class="note">No chargeable offences found. The Compliance Division has opened an investigation into how that happened.</p>';
+    }
+    h+='<p class="note" style="margin-top:14px">The score counts stock phrases and habits of corporate style. It cannot tell who or what wrote the text, and it is not a measure of quality. Plenty of excellent writing would score low; that is the point of the joke, not a licence to print certificates.</p>';
+    return h;
+  }
+
+  var inp=document.getElementById("audit-in"),
+      out=document.getElementById("audit-out"),
+      go=document.getElementById("audit-go"),
+      im=document.getElementById("audit-img"),
+      ie=document.getElementById("audit-imged"),
+      ct=document.getElementById("audit-count");
+  var last=null;
+  var n=0;
+  try{n=parseInt(localStorage.getItem("slopaudit-count")||"0",10)||0}catch(e){}
+  ct.textContent=n;
+  go.addEventListener("click",function(){
+    var r=audit(inp.value);
+    if(!r){out.innerHTML='<p class="audit-verdict">Please supply a paragraph. Three words is a memo, and we do not audit memos.</p>';last=null;return}
+    last=r;
+    out.innerHTML=render(r);
+    n++;ct.textContent=n;
+    try{localStorage.setItem("slopaudit-count",String(n))}catch(e){}
+    ie.hidden=true;
+  });
+
+  function wrapLines(ctx,text,maxW){
+    var lines=[],paras=String(text).split("\n"),i,j,words2,line,test;
+    for(i=0;i<paras.length;i++){
+      if(!paras[i]){lines.push("");continue}
+      words2=paras[i].split(/\s+/);line="";
+      for(j=0;j<words2.length;j++){
+        test=line?line+" "+words2[j]:words2[j];
+        if(ctx.measureText(test).width>maxW&&line){lines.push(line);line=words2[j]}
+        else line=test;
+      }
+      lines.push(line);
+    }
+    return lines;
+  }
+  function roundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+  }
+  function buildCert(r){
+    var W=1200,PAD=64,INNER=W-PAD*2;
+    var cv=document.createElement("canvas"),ctx=cv.getContext("2d");
+    var fMono='500 19px "IBM Plex Mono",ui-monospace,monospace';
+    var fScore='700 130px "Space Grotesk",system-ui,sans-serif';
+    var fVerdict='500 30px "Space Grotesk",system-ui,sans-serif';
+    var fOff='400 26px "IBM Plex Mono",ui-monospace,monospace';
+    ctx.font=fVerdict;var vLines=wrapLines(ctx,r.verdict,INNER);
+    var y=PAD;
+    y+=19+80;
+    y+=150+40;
+    y+=vLines.length*42+40;
+    var offCount=Math.min(3,r.offenses.length);
+    if(offCount)y+=30+offCount*40+30;
+    y+=24;
+    var H=y+PAD;
+    cv.width=W;cv.height=H;
+    ctx=cv.getContext("2d");
+    ctx.fillStyle="#08070d";ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle="#242232";ctx.lineWidth=2;
+    roundRect(ctx,1,1,W-2,H-2,14);ctx.stroke();
+    var cy=PAD;
+    ctx.font=fMono;ctx.fillStyle="#5d5972";ctx.textBaseline="alphabetic";
+    ctx.fillText("LLM-SLOP.COM/AUDIT",PAD,cy+19);
+    var right="SLOP AUDIT CERTIFICATE \u00b7 COMPLIANCE DIVISION";
+    ctx.fillText(right,W-PAD-ctx.measureText(right).width,cy+19);
+    cy+=80;
+    ctx.strokeStyle="#c6ff3f";ctx.lineWidth=3;
+    ctx.strokeRect(PAD,cy,240,150);
+    ctx.font=fScore;ctx.fillStyle="#c6ff3f";
+    var sTxt=String(r.score);
+    var sw=ctx.measureText(sTxt).width;
+    ctx.fillText(sTxt,PAD+120-sw/2,cy+112);
+    ctx.font=fMono;ctx.fillStyle="#5d5972";
+    ctx.fillText("/100",PAD+190,cy+140);
+    cy+=150+40;
+    ctx.font=fVerdict;ctx.fillStyle="#eae8f2";
+    var i;
+    for(i=0;i<vLines.length;i++){cy+=42;ctx.fillText(vLines[i],PAD,cy)}
+    cy+=40;
+    if(offCount){
+      ctx.font=fMono;ctx.fillStyle="#c6ff3f";
+      ctx.fillText("PRINCIPAL OFFENCES",PAD,cy);cy+=30;
+      ctx.font=fOff;ctx.fillStyle="#cfccdd";
+      for(i=0;i<offCount;i++){cy+=40;ctx.fillText("\u201c"+r.offenses[i].phrase+"\u201d \u00d7"+r.offenses[i].count,PAD,cy)}
+      cy+=30;
+    }
+    ctx.font=fMono;ctx.fillStyle="#5d5972";
+    ctx.fillText("THIS CERTIFICATE CERTIFIES NOTHING.",PAD,cy+24);
+    return cv;
+  }
+  im.addEventListener("click",function(){
+    if(!last){
+      out.innerHTML='<p class="audit-verdict">Run the audit first. The Compliance Division does not issue certificates on spec.</p>';
+      return;
+    }
+    var cv=buildCert(last);
+    function save(blob){
+      var url=blob?URL.createObjectURL(blob):cv.toDataURL("image/png");
+      var a=document.createElement("a");a.href=url;a.download="llm-slop-audit-certificate.png";
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+      if(blob)setTimeout(function(){URL.revokeObjectURL(url)},4000);
+      ie.hidden=false;
+    }
+    if(cv.toBlob)cv.toBlob(function(b){save(b)},"image/png");
+    else save(null);
+  });
+})();
+</script>
+</body>
+</html>
