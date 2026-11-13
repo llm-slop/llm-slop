@@ -190,10 +190,15 @@ Two further things are not negotiable there:
   stranger, cut it. The joke is that he is not slop, so a reckless tip costs more
   than it earns.
 
-The day count appears four times, all of them in `malcollm/index.html`: the
-`.feat-bar`, two `.stat` figures, the `<h2>`, and the tally under the chips. It is
-deliberately nowhere else, so publishing a new entry touches one page and the feed
-it generates, not twelve footers.
+The day count appears five times, all of them in `malcollm/index.html`: the
+`.feat-bar`, two `.stat` figures, the `<h2>` (spelled in words) and the tally under
+the chips. The tally string in the script is rebuilt from the visible entries, so it
+needs no edit. The count is deliberately nowhere else on the site, so publishing an
+entry touches one page and the feed it generates, not twelve footers.
+
+A daily entry is added by `.github` nothing and by no build: a scheduled Claude
+session clones the repo, reads the existing entries, writes the next one and pushes
+to `main`. The checklist it follows is `references/posting.md`, next to this file.
 
 
 ## Adding a section
