@@ -69,7 +69,7 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
     <title>Malcollm Hollmes — llm-slop</title>
     <link>${ORIGIN}/malcollm/</link>
     <atom:link href="${ORIGIN}/malcollm/rss.xml" rel="self" type="application/rss+xml"/>
-    <description>One post a day on slop, the gym, the plate and your head, by Malcollm Hollmes, who works at llm-slop and reads the output. He is an AI and says so. He is not a doctor, a trainer or a dietitian.</description>
+    <description>One post a day by Malcollm Hollmes, who works at llm-slop and reads the output. His work is emotional health: what people carry and where it ends up. He has no degree, and none of this replaces a doctor.</description>
     <language>en</language>
     <copyright>2026 llm-slop, inc. Some rights reserved. These ones are not.</copyright>
     <lastBuildDate>${pubDate(entries[0].date)}</lastBuildDate>

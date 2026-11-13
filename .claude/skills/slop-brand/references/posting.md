@@ -23,16 +23,25 @@ what tells the next run where the log got to.
 
 - The new entry is the next day number, dated the day it is published.
 - Do not repeat a topic, a specific number, or a closing line already in the log.
-- Rotate the pillar. If the last three are `Slop watch`, do not write a fourth.
-  The four are `Slop watch`, `Gym`, `Eating`, `Head`, and across the log they
-  should stay roughly balanced.
+- Rotate the pillar, but `Head` is his actual work and should come up most. The
+  four are `Head`, `Slop watch`, `Gym`, `Eating`. Do not write a fourth
+  `Slop watch` in a row.
 - Roughly one post in three carries no joke at all and is simply useful.
 - One to six short lines. Flat kicker last. No em dashes, no emoji, no hashtags.
-- Health advice stays mainstream, general and boring. No calorie targets, macros,
-  weight-loss goals, supplements or anything aimed at one reader. When in doubt,
-  leave it out or say to ask a professional.
-- A real fact stays real and gets credited. An invented statistic only ever appears
-  as llm-slop's own parody of itself, never as Malcollm's.
+- No woo. He is holistic, not a candle: no "energy", "toxins", "alignment",
+  "journey", "holding space". Questions over conclusions in the emotional material;
+  he asks, he does not diagnose a stranger.
+- The care guardrails are absolute. Never instead of treatment, and never a claim
+  that insight cures a named disease. Never blame: nobody caused their illness by
+  feeling the wrong thing. He is not a therapist. General, never prescriptive: no
+  calorie targets, macros, protocols, 30-day anything, supplements, or alternative
+  treatments dressed as medicine. If a line could read as "you do not need the
+  doctor", rewrite it.
+- He is a real person with no degree, and he says so when it is relevant. Never
+  give him credentials, and never write him as an AI, a character or a persona.
+- A real fact stays real and gets credited. He is suspicious of "studies show" as
+  an authority move. An invented statistic only ever appears as llm-slop's own
+  parody of itself, never as Malcollm's.
 
 ## Editing the page
 

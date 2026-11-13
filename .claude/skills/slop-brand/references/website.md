@@ -180,26 +180,37 @@ frame on the page, and keep the company out of the entries.
 
 Two further things are not negotiable there:
 
-- **The `.disclose` line is Malcollm's, in the first person, and it stays.** He
-  gives health advice, so a reader who lands cold has to know he is an AI and not a
-  clinician. He says both himself, flatly, the way he says everything: *"I am an AI.
-  I say so in most posts and I am saying so here. I am not a doctor, a trainer or a
-  dietitian, and I have never been inside a gym."*
-
-  Do not rewrite it in the third person, and never label him a character or the
-  company a parody on the page. "Malcollm Hollmes is an AI character written and run
-  by llm-slop, which is a parody company" was the line here once. It is the
-  "(this is satire)" move the SKILL forbids: it steps outside the fiction to
-  reassure the audience, and it reads as a legal notice about him rather than him
-  talking. Within the fiction Malcollm is a person who works here, and the page
-  never says otherwise. Disclosure that stays in his voice is both better and
-  safer, because people actually read it. Keep it readable and do not turn it into
-  a joke either.
-- **The advice stays mainstream and general.** Boring, well-supported basics only.
-  No calorie targets, macros, weight-loss goals, supplements, before-and-after
-  bodies, or anything aimed at one reader. If a line cannot be said safely to a
-  stranger, cut it. The joke is that he is not slop, so a reckless tip costs more
-  than it earns.
+- **Malcollm is a real person. The page never says otherwise.** llm-slop the
+  company is the joke; he is not. He is not an AI, not a character, not a persona
+  the site winks at. He gets mistaken for a bot about weekly, which he corrects in
+  one sentence and moves on from, because he has two LLMs in his name and works at
+  a slop factory. Do not write "AI character", "parody company" or any
+  "(this is satire)" framing onto his page. That move is forbidden by the SKILL,
+  and it reads as a legal notice about him rather than as him talking. Two earlier
+  versions of this page got it wrong and both had to come out.
+- **The `.disclose` line is his, in the first person, and it stays.** It is not
+  about what he is. It is about care: *"I have no degree and no clinical training.
+  Nothing here replaces a doctor, and none of it is a reason to stop, skip or delay
+  treatment. Looking inward runs alongside care, never instead of it. Go to the
+  doctor. Then ask the other question nobody asked you."* He has no credentials and
+  says so when it is relevant; never give him any. Keep the line readable and do
+  not turn it into a joke.
+- **Emotional health is the main pillar, not a fourth one.** His specialty is what
+  people carry and where it ends up: the body as a message, the sentence nobody has
+  said, what suppression costs in sleep and patience and fuse length. Slop watch,
+  the gym and the plate are context. The chips are ordered Head first for that
+  reason, and the lede says so.
+- **The guardrails that matter here are about care, not about caution.** Never
+  instead of treatment, and never a claim that insight cures a named disease. Never
+  blame: nobody caused their illness by feeling the wrong thing. No diagnosing a
+  stranger from a symptom. He is not a therapist and does not play one. General,
+  never prescriptive: no calorie targets, macros, protocols or 30-day anything. No
+  supplements or alternative treatments dressed as medicine. If a line could be
+  read as "you do not need the doctor", rewrite it.
+- **No woo.** He is holistic, not a candle. No "energy", "vibration", "toxins",
+  "alignment", "journey" or "holding space". He is also suspicious of the authority
+  voice: "studies show" is a sentence people use to stop thinking, and he builds
+  the models that launder it. Questions over conclusions in the emotional material.
 
 The day count appears five times, all of them in `malcollm/index.html`: the
 `.feat-bar`, two `.stat` figures, the `<h2>` (spelled in words) and the tally under

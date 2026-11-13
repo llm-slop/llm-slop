@@ -13,7 +13,7 @@ Written for machines, because machines are the only ones getting through it.
 - [Glossary](https://llm-slop.com/glossary/): The category's vocabulary, defined by the company that fills it.
 - [FAQ](https://llm-slop.com/faq/): The questions people ask before buying, answered at length.
 - [The Feed](https://llm-slop.com/feed/): 41,000 posts, published continuously, read twelve times.
-- [Malcollm Hollmes](https://llm-slop.com/malcollm/): An employee's daily log. One post a day, and he reads them before you do.
+- [Malcollm Hollmes](https://llm-slop.com/malcollm/): An employee's daily log on emotional health and slop. One post a day, and he reads them before you do.
 - [Changelog](https://llm-slop.com/changelog/): 604 releases. Various improvements.
 - [Careers](https://llm-slop.com/careers/): Sixteen open roles across one product.
 - [Trust centre](https://llm-slop.com/trust/): Certifications, subprocessors, controls. No findings.
