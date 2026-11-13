@@ -36,6 +36,13 @@
   </url>
 
   <url>
+    <loc>https://llm-slop.com/malcollm/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://llm-slop.com/careers/</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>weekly</changefreq>

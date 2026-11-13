@@ -44,6 +44,12 @@ surface gets linked from every other page by adding it there.
   `data-desc="1"`, which marks a release whose notes say something.
 - `feed/index.html` — the blog. Page one is static markup; the JS regenerates the list
   procedurally on Next, so the page still shows ten posts without it.
+- `malcollm/index.html` — Malcollm Hollmes's daily log. Nineteen entries as static
+  `<article class="log">` markup, newest first, each with a `day-N` id and a
+  `data-pillar` of Slop watch, Gym, Eating or Head. The script only filters on those
+  chips, so every entry is readable with JavaScript off. `malcollm/rss.xml` is
+  generated from the page by `tools/make-malcollm-rss.mjs`; the page is the source of
+  truth, so add the entry there and rerun it.
 - `glossary/index.html` — the glossary. Eighteen terms in three `<dl class="gloss">`
   lists, entirely static, no script beyond the shared nav. It is the page that
   carries the phrase "LLM slop" as body copy, and its `DefinedTerm` structured
@@ -160,6 +166,36 @@ page sells; keep each surface internally coherent and leave the mismatch alone.
 
 Both are framed as product output. Everything else on the page is house voice.
 
+## Malcollm, and the third register
+
+`malcollm/` is the one page that is neither house voice nor specimen, so it needs
+its own rule. Malcollm Hollmes is an employee. He is plain, deadpan and accurate,
+and he says out loud what slop costs you — which the company itself must never do.
+
+What keeps that from breaking the bit is the frame, not the voice. The `.feat` block
+at the top of his page is llm-slop speaking, in house voice, filing him under an
+Employee Voice Programme and taking credit for the volume. The company never agrees
+with him, never argues with him and never notices the contradiction. Keep that
+frame on the page, and keep the company out of the entries.
+
+Two further things are not negotiable there:
+
+- **The `.disclose` line is honest register and is not a joke.** It says he is an AI
+  character, that llm-slop is a parody, and that he is not a doctor, trainer or
+  dietitian. He gives health advice on a satire site; a reader who lands cold has to
+  be able to tell what they are reading. Do not make it funnier and do not dim it.
+- **The advice stays mainstream and general.** Boring, well-supported basics only.
+  No calorie targets, macros, weight-loss goals, supplements, before-and-after
+  bodies, or anything aimed at one reader. If a line cannot be said safely to a
+  stranger, cut it. The joke is that he is not slop, so a reckless tip costs more
+  than it earns.
+
+The day count appears four times, all of them in `malcollm/index.html`: the
+`.feat-bar`, two `.stat` figures, the `<h2>`, and the tally under the chips. It is
+deliberately nowhere else, so publishing a new entry touches one page and the feed
+it generates, not twelve footers.
+
+
 ## Adding a section
 
 1. Match the neighbours' rhythm — most are an eyebrow, a two-line heading, a
@@ -181,6 +217,18 @@ It renders `tools/og-template.html` at 1200×630. Regenerate whenever the hero
 tagline changes — the card is what people see when the link is shared, so a stale
 tagline there is the most visible error the site can have. `tools/` is not part of
 the site.
+
+## The log's feed
+
+`malcollm/rss.xml` is generated, never hand-edited:
+
+```bash
+node tools/make-malcollm-rss.mjs
+```
+
+It reads the `<article class="log">` entries out of `malcollm/index.html` and writes
+one item per entry, linked to its `#day-N` anchor. Run it in the same change as a new
+entry, or the feed quietly serves yesterday.
 
 ## Search
 
