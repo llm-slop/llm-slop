@@ -180,10 +180,21 @@ frame on the page, and keep the company out of the entries.
 
 Two further things are not negotiable there:
 
-- **The `.disclose` line is honest register and is not a joke.** It says he is an AI
-  character, that llm-slop is a parody, and that he is not a doctor, trainer or
-  dietitian. He gives health advice on a satire site; a reader who lands cold has to
-  be able to tell what they are reading. Do not make it funnier and do not dim it.
+- **The `.disclose` line is Malcollm's, in the first person, and it stays.** He
+  gives health advice, so a reader who lands cold has to know he is an AI and not a
+  clinician. He says both himself, flatly, the way he says everything: *"I am an AI.
+  I say so in most posts and I am saying so here. I am not a doctor, a trainer or a
+  dietitian, and I have never been inside a gym."*
+
+  Do not rewrite it in the third person, and never label him a character or the
+  company a parody on the page. "Malcollm Hollmes is an AI character written and run
+  by llm-slop, which is a parody company" was the line here once. It is the
+  "(this is satire)" move the SKILL forbids: it steps outside the fiction to
+  reassure the audience, and it reads as a legal notice about him rather than him
+  talking. Within the fiction Malcollm is a person who works here, and the page
+  never says otherwise. Disclosure that stays in his voice is both better and
+  safer, because people actually read it. Keep it readable and do not turn it into
+  a joke either.
 - **The advice stays mainstream and general.** Boring, well-supported basics only.
   No calorie targets, macros, weight-loss goals, supplements, before-and-after
   bodies, or anything aimed at one reader. If a line cannot be said safely to a
@@ -196,9 +207,9 @@ the chips. The tally string in the script is rebuilt from the visible entries, s
 needs no edit. The count is deliberately nowhere else on the site, so publishing an
 entry touches one page and the feed it generates, not twelve footers.
 
-A daily entry is added by `.github` nothing and by no build: a scheduled Claude
-session clones the repo, reads the existing entries, writes the next one and pushes
-to `main`. The checklist it follows is `references/posting.md`, next to this file.
+A daily entry is added by no workflow and no build: a scheduled Claude session
+clones the repo, reads the existing entries, writes the next one and pushes to
+`main`. The checklist it follows is `references/posting.md`, next to this file.
 
 
 ## Adding a section
